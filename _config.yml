@@ -10,7 +10,7 @@ port: 4003
 carpentry: "sih"
 
 # Overall title for pages.
-title: "Intermediate Artemis HPC: Automating analysis with job arrays"
+title: "Parallel Python: multithreading, multiprocessing and parallel python programming for HPC"
 series_name: "Artemis Series"
 
 #------------------------------------------------------------
