@@ -11,7 +11,10 @@ MAINTAINER="Anaconda, Inc"
 # docker push nbutter/daskdev
 # docker run -it nbutter/daskdev 
 # sudo singularity build dask.sing Singularity.dask
+
+# The built image is currently on Artmies at /project/Training/PROJECTS/dask.sing, run with:
 # singularity run dask.sing
+# Entry point to container is /project, so change to your desired directoy, start python, and "import dask"
 
 LANG=C.UTF-8
 LC_ALL=C.UTF-8
