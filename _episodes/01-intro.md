@@ -1,5 +1,5 @@
 ---
-title: "Accellerating Python"
+title: "Accelerating Python"
 teaching: 15
 exercises: 0
 questions:
@@ -26,11 +26,11 @@ The Sydney Informatics Hub (SIH) is a _[Core Research Facility](https://sydney.e
 
 **Artemis HPC** itself is a multi-million dollar set of equipment, a 'supercomputer', and is the main piece of equipment supported by SIH. However, we also provide a wide range of research services to aid investigators, such as:
 
-* [Training](https://sydney.edu.au/research/facilities/sydney-informatics-hub/workshops-and-training.html)
-* [Project consulting and assisstance](https://sydney.edu.au/research/facilities/sydney-informatics-hub/project-support.html) with Statistics, Data Science, Research Engineering, Bioinformatics, Modeling/Simulation/Visualisation consulting and project assistance
-* [Research Data Management](https://sydney.edu.au/research/facilities/sydney-informatics-hub/digital-research-infrastructure.html) consulting and platform support.
+* [Training and workshops].(https://sydney.edu.au/research/facilities/sydney-informatics-hub/workshops-and-training.html)
+* [Project consulting and assisstance](https://sydney.edu.au/research/facilities/sydney-informatics-hub/project-support.html) with Statistics, Data Science, Research Engineering, Bioinformatics, Modeling/Simulation/Visualisation.
+* [Research data management](https://sydney.edu.au/research/facilities/sydney-informatics-hub/digital-research-infrastructure.html) consulting and platform support.
 
-We also aim to cultivate a **data community** at USyd, organising monthly [Hacky Hours](https://sydney.edu.au/research/facilities/sydney-informatics-hub/workshops-and-training/hacky-hour.html), outside training events (eg NVIDIA, Pawsey Center), and data/coding-related events. Look out for everthing happening on our calander or contact us to get some digital colloboration going.
+We also aim to cultivate a **data community** at USyd, organising monthly [Hacky Hours](https://sydney.edu.au/research/facilities/sydney-informatics-hub/workshops-and-training/hacky-hour.html), outside training events (eg NVIDIA, Pawsey Center), and data/coding-related events. Look out for everthing happening on our [calander](https://sydney.edu.au/research/facilities/sydney-informatics-hub/workshops-and-training.html) or contact us to get some digital collaboration going.
 
 # Connect to Artemis
 
