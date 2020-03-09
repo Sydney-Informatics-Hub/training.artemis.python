@@ -32,6 +32,22 @@ The Sydney Informatics Hub (SIH) is a _[Core Research Facility](https://sydney.e
 
 We also aim to cultivate a **data community** at USyd, organising monthly [Hacky Hours](https://sydney.edu.au/research/facilities/sydney-informatics-hub/workshops-and-training/hacky-hour.html), outside training events (eg NVIDIA, Pawsey Center), and data/coding-related events. Look out for everthing happening on our [calander](https://sydney.edu.au/research/facilities/sydney-informatics-hub/workshops-and-training.html) or contact us to get some digital collaboration going.
 
+
+# Acceleration/Paralleisation/Vectorising/Threading/make-Python-go-fast 
+
+We will cover a few of the ways that you can potentially speed up Python. As we will learn there are multitudes of methods to make Python code more efficient, and also different implentations of libraries, tools, techniques that can all be utilised depending on how your code and/or data is organised. This is a rich and evolving ecosystem and there is no one perfect way to implement efficiencies.
+
+Some key words that might come up:
+
+* Vectorisation
+* Multi threading
+* MPI message parsing interface
+* GPU programming
+* CPU, core, node, thread
+* Parallelisation
+
+
+
 # Connect to Artemis
 
 If you followed the [Setup]({{ page.root }}/setup) instructions, then you should already have the required software installed. If not, _please go do this now_!
