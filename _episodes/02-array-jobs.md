@@ -1,16 +1,14 @@
 ---
-title: "Automating with Array Jobs"
+title: "Traditional python approaches to multi cpu and nodes"
 teaching: 25
 exercises: 5
 questions:
-- "How to run multiple similar jobs"
+- "How to utilise multiple cpus and nodes on Artemis"
 objectives:
-- "Discover PBS job arrays"
-- "Submit an array job"
+- "Discover python multiprocessing and mpi execution"
 keypoints:
-- "Arrays allow you to submit multiple similar jobs in one script"
-- Submit an array job with option ```-J i-f:s```
-- "The ```^array_index^``` construction can be used inside PBS directives"
+- "load multiprocessing library to execute a function in a parallel manner"
+
 ---
 This episode introduces PBS Array Jobs, which can submit multiple jobs at once.
 
