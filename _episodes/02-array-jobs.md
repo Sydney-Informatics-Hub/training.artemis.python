@@ -25,7 +25,13 @@ Some basic concepts in the multiprocessing library are:
 2. The ```map(function,list)``` attribute of this object uses the pool to map a defined function to a list/iterator object
 
 
-To implement multiprocessing in its basic form, you can implement the below in ipython
+To implement multiprocessing in its basic form, you can implement the below in an interactive session.
+
+~~~
+qsub -I -P Training -l ncpus=4:mem=6GB -l walltime=00:15:00
+~~~
+
+Create your basic pbs script that loads python and runs the below code
 
 ~~~
 from multiprocessing import Pool
