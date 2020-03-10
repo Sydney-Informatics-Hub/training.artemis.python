@@ -76,8 +76,8 @@ Let create a working folder and copy data to it. This holds both data and files 
 ~~~
 mkdir /project/Training/myname 
 cd /project/Training/myname 
-rsync -av /project/Training/AdvPyTrain/* .
-
+rsync -av /project/Training/AdvPyTrain/files/* .
+rsync -av /project/Training/AdvPyTrain/data/* .
 ~~~
 
 
