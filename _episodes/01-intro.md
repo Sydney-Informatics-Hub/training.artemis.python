@@ -5,8 +5,7 @@ exercises: 0
 questions:
 - "Who are the Sydney Informatics Hub?"
 objectives:
-- "Connect to Artemis."
-- "Run an interactive job on Artemis"
+- "Understand the Accelerated Python ecosystem."
 keypoints:
 - "Recall how to connect to Artemis HPC"
 - "Recall the difference between _batch_ and _interactive_ jobs"
