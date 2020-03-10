@@ -34,14 +34,20 @@ qsub -I -P Training -l ncpus=4:mem=6GB -l walltime=00:15:00
 Create your basic pbs script that loads python and runs the below code
 
 ~~~
+
 from multiprocessing import Pool
 
-def f(x):
-    return x*x
+def addit(x):
+        return x + 1
 
-if __name__ == '__main__':
-    with Pool(5) as p:
-        print(p.map(f, [1, 2, 3]))
+def main():
+        print(addit(4))
+
+        with Pool(2) as p:
+                print(p.map(addit,[1,2,3]))
+
+main()
+
 ~~~
 {: .bash}
 
