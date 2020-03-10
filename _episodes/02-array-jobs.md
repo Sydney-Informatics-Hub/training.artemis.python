@@ -28,8 +28,9 @@ Some basic concepts in the multiprocessing library are:
 To implement multiprocessing in its basic form, you can implement the below in an interactive session.
 
 ~~~
-qsub -I -P Training -l ncpus=4:mem=6GB -l walltime=00:15:00
+qsub -I -P Training -l ncpus=6:mem=6GB -l walltime=00:10:00
 ~~~
+
 
 Python 3 is neccessary
 ~~~
@@ -61,6 +62,23 @@ The output should be
 [1, 4, 9]
 ~~~
 {: .output}
+
+Lets run a larger piece of code in the traditional PBS script manner that utilises the multiprocessing library. You'll need some files for this and other training demonstrations covered today. 
+
+If your not still in an interactive session, create another one
+
+~~~
+qsub -I -P Training -l ncpus=6:mem=6GB -l walltime=00:10:00
+~~~
+
+Let create a working folder and copy data to it. This holds both data and files we'll use for the rest of this training session.
+
+~~~
+mkdir /project/Training/myname 
+cd /project/Training/myname 
+rsync -av /project/Training/AdvPyTrain/* .
+
+~~~
 
 
 ## Useful links
