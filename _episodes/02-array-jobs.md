@@ -10,13 +10,21 @@ keypoints:
 - "load multiprocessing library to execute a function in a parallel manner"
 
 ---
-This episode introduces PBS Array Jobs, which can submit multiple jobs at once.
 
-## PBS Job Arrays
+## Python Multiprocessing
 
-You'll often want to run similar jobs many times, or the same project pipeline on multiple similar sets of data. Submitting a new PBS job for each of these runs quickly gets cumbersome, so you might try automating this process. PBS provides an easy way to do just this with its **array jobs**.
+While the PBS resource request #PBS -l ncpus signals to the scheduler how many cpus you want your job to run, you may need more flexible ways to manage resources from within python code. This is traditionally done with the **multiprocessing** library. 
 
-An **array job** is simply a job duplicated many times. It is organised as an _array_, with each job having in the array its own **array index**, which is also stored in an environment variable ```PBS_ARRAY_INDEX```. Array jobs are created using the **PBS directive** ```-J``` followed by a range of array indices, eg
+With multiprocessing, Python creates new processes. A process here can be thought of as almost a completely different program, though technically they’re usually defined as a collection of resources where the resources include memory, file handles and things like that. One way to think about it is that each process runs in its own Python interpreter, and multiprocessing farms out parts of your program to run on each process.
+
+## Some terminology
+The multiprocessing library was designed to break down the Global Interpreter Lock (GIL) that limits one thread to control python interpreter. In Python, the things that are occurring simultaneously are called by different names (thread, task, process). While they all fall under the definition of concurrency (multiple things happening anaologous to different trains of thought) - only multiprocessing actually runs these trains of thought at literally the same time. We'll only cover multiprocessing that assist in cpu bound operations - but keep in mind others exist and could be useful for IO bound operations (like reading files from the internet - files etc).
+
+
+## Useful links
+
+https://realpython.com/python-concurrency/
+
 
 ~~~
 #PBS -J 1-100
