@@ -31,7 +31,12 @@ To implement multiprocessing in its basic form, you can implement the below in a
 qsub -I -P Training -l ncpus=4:mem=6GB -l walltime=00:15:00
 ~~~
 
-Create your basic pbs script that loads python and runs the below code
+Python 3 is neccessary
+~~~
+module load python/3.7.2
+~~~
+
+Create your basic python file with the below code and run
 
 ~~~
 
