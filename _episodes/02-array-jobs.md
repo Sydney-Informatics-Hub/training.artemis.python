@@ -71,7 +71,7 @@ If your not still in an interactive session, create another one
 qsub -I -P Training -l select=1:ncpus=6:mem=6GB -l walltime=00:10:00
 ~~~
 
-Let create a working folder and copy data to it. This holds both data and files we'll use for the rest of this training session.
+Lets create a working folder and copy data to it. This holds both data and files we'll use for the rest of this training session.
 
 ~~~
 mkdir /project/Training/myname 
@@ -80,6 +80,17 @@ rsync -av /project/Training/AdvPyTrain/files/* ./files
 rsync -av /project/Training/AdvPyTrain/data/* ./data
 ~~~
 
+Navigate to the computepi_multiprocs.py file located in the files directory. Notice how the Pool object and map function sets off simulating an estimate of pi given a sequence of trails - the larger the trail number the closer the estimate is to pi. 
+
+Run this code by submitting the run_pi.pbs file to the scheduler. 
+
+~~~
+cd files
+qsub run_pi.pbs
+~~~
+
+##Keep in Mind
+There is generally a sweet spot in how many processes you create to optimise the run time. A large number of python processes is generally not advisable, as it involves a large fixed cost in setting up many python interpreters and its supporting infrastructure. Play around with different numbers of processes in the pool(processes) statement to see how the runtime varies. 
 
 ## Useful links
 
