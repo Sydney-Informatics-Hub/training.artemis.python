@@ -89,7 +89,10 @@ cd files
 qsub run_pi.pbs
 ~~~
 
-##Keep in Mind
+The pbs script should submit two jobs that approximate pi in the same way, except one using the multiprocessing library and is slightly faster even though the same Artemis resources are requested.
+
+## Keep in Mind
+
 There is generally a sweet spot in how many processes you create to optimise the run time. A large number of python processes is generally not advisable, as it involves a large fixed cost in setting up many python interpreters and its supporting infrastructure. Play around with different numbers of processes in the pool(processes) statement to see how the runtime varies. 
 
 ## Useful links
