@@ -1,5 +1,5 @@
 ---
-title: "Automating with Arrays Jobs"
+title: "Intro to Dask and Dask Dataframes"
 teaching: 25
 exercises: 5
 questions:
