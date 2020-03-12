@@ -88,8 +88,97 @@ data
 ~~~
 {:. bash}
 
-The data is preloaded into a dask dataframe. Notice the output to data shows the dataframe metadata. 
+The data is preloaded into a dask dataframe. Notice the output to data shows the dataframe metadata.  
+
 The concept of splitting the dask dataframe into pandas sub dataframes can be seen by the ***nopartitians=10*** output. This is the number of partitians the dataframe is split into and in this case was automatically calibrated, but can be specified. There is a trade of between splitting data too much that improves memory management, and the number of extra tasks it generates. For instance, if you have a 1000 GB of data and are using 10 MB chunks, then you have 100,000 partitions. Every operation on such a collection will generate at least 100,000 tasks. But more on this later. For now lets become familiar with some basic Dataframe operations.
+
+
+Lets inspect the data in its types, and also take the first 5 rows. 
+
+By default, dataframe operations are ***lazy*** meaning no computation takes place until specified. The ***.compute()*** triggers such a computation - and we will see later on that it converts a dask dataframe into a pandas dataframe. ***head(rows)*** also triggers a computation - but is really helpful in exploring the underlying data.
+~~~
+data.dtypes
+data.head(5)
+~~~
+{: .bash}
+
+You should see the below output
+~~~
+In [6]: data.head(5)
+Out[6]:
+   age     occupation          telephone  ...       street-address          city  income
+0   54  Acupuncturist     (528) 747-6949  ...  1242 Gough Crescent  Laguna Beach  116640
+1   38   Shelf Filler       111.247.5833  ...       10 Brook Court     Paragould   57760
+2   29    Tax Manager       035-458-1895  ...  278 Homestead Trace    Scottsdale   33640
+3   19      Publisher  +1-(018)-082-3905  ...     310 Ada Sideline    East Ridge   14440
+4   25      Stationer     1-004-960-0770  ...        711 Card Mall     Grayslake   2500
+~~~
+{: .output}
+
+Lets perform some familiar operations for those who use pandas.
+
+filter operation - filter people who are older than 60 and assign to another dask array called data2
+
+~~~
+data2 = data[data.age > 60]
+~~~
+{: .bash}
+
+group by operation - calculate the average incomes by occupation. Notice the compute() trigger that performs the operations.
+
+~~~
+data.groupby('occupation').income.mean().compute()
+~~~
+{: .python}
+
+A memory efficient style is to create pipelines of operations and trigger a final compute at the end. 
+~~~
+datapipe = data[data.age < 20]
+datapipe = datapipe.groupby('income').mean()
+datapipe.head(5)
+~~~
+
+~~~
+        age
+income
+10240   16.0
+11560   17.0
+12960   18.0
+14440   19.0
+
+~~~
+{: .output}
+
+Chaining syntax can also be used to do the same thing, but keep readability in your code in mind.
+~~~
+pandasdata = (data[data.age < 20].groupby('income').mean()).compute()
+Chaining syntax can also be used to do the same thing, but keep readability in your code in mind.
+~~~
+{: .bash}
+
+sort operation - get the occupations with the largest people working in them
+~~~
+data.occupation.value_counts().nlargest(5).compute()
+~~~
+{: .bash}
+
+write the output of a filter result to csv
+~~~
+data[data.city == 'Madison Heights'].compute().to_csv('Madison.csv')
+~~~
+{: .bash}
+
+### Lets run a larger python file on the HPC that uses Dask Dataframes
+
+
+### Helpful links
+
+Dask Dataframe intro
+https://docs.dask.org/en/latest/dataframe.html
+
+API list for Dask Dataframes
+https://docs.dask.org/en/latest/dataframe-api.html
+
 
 ___
 **Notes**   
