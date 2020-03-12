@@ -168,7 +168,20 @@ data[data.city == 'Madison Heights'].compute().to_csv('Madison.csv')
 ~~~
 {: .bash}
 
-### Lets run a larger python file on the HPC that uses Dask Dataframes
+### Custom made operations.... dask.delayed
+
+But what if you need to perform your own function, or a function outside of the pandas subset that dask dataframes make available. Dask delayed is your friend. It uses ***python decorator syntax*** to convert a function into a lazy executable. The functions can then be applied to build data pipeline operations in a similar manner to what we've just encountered.
+
+In the /files directory, use your preferred editor to view the complex_system.py file. This script uses dask delayed functions that are applied to a sequence of data using pythonic ***list comprehension syntax*** . Lets get out of ipython and the interactive session if you are using it, and submit this file in the traditional PBS script manner.
+
+
+~~~
+qsub complex_system.pbs
+
+~~~
+
+### Task
+Make your own lazy function using the decorator syntax, and perform the computation on a column of the data previously used in the makedata.data() helper file. 
 
 
 ### Helpful links
