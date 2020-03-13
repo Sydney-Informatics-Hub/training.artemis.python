@@ -36,14 +36,85 @@ What are the ***drawbacks*** ?
 
 ### To learn Bag - Lets get our hands dirty with some examples
 
+Lets get back to ipython, ensuring that the dask conda environment is still activate.
 
+~~~
+source /project/Training/kmarTrain/miniconda3/bin/activate
+conda activate dask
+qsub -I -P Training -l select=1:ncpus=4:mem=4GB -l walltime=00:40:00 (depending on class participation 24 cpu limit)
+cd /project/Training/myname
+ipython
+~~~
+
+We will investigate data located on the web that logs all juypter notebook instances run on the net. Two files are 
+1. Log files of every entry specific to a certain day
+2. An index of daily log files
+
+Before we start, some python packages are needed. Types these commands directly into ipython
+~~~
+import dask.bag as db
+import json
+import os
+import re
+import time
+~~~
+{: .bash}
+
+Investigate underlying data by reading text file that houses daily data into a bag. First few rows are displayed
+~~~
+db.read_text('https://archive.analytics.mybinder.org/events-2018-11-03.jsonl').take(3)
+~~~
+{: .bash}
+
+The output should give you a task for the underlying data in the daily log files. Essential this is a text file in json format.
+~~~
+('{"timestamp": "2018-11-03T00:00:00+00:00", "schema": "binderhub.jupyter.org/launch", "version": 1, "provider": "GitHub", "spe                c": "Qiskit/qiskit-tutorial/master", "status": "success"}\n',
+ '{"timestamp": "2018-11-03T00:00:00+00:00", "schema": "binderhub.jupyter.org/launch", "version": 1, "provider": "GitHub", "spe                c": "ipython/ipython-in-depth/master", "status": "success"}\n',
+ '{"timestamp": "2018-11-03T00:00:00+00:00", "schema": "binderhub.jupyter.org/launch", "version": 1, "provider": "GitHub", "spe                c": "QISKit/qiskit-tutorial/master", "status": "success"}\n')
+
+~~~
+{: .output}
+
+
+Index file loaded as a bag. No data transfer or computation kicked off - just organising mapping the file to a json structure
+~~~
+index = db.read_text('https://archive.analytics.mybinder.org/index.jsonl').map(json.loads)
+index
+index.take(2)
+~~~
+{: .bash}
+
+These files aren't big at all - a sign is the number of partitians of 1. Dask would automatically split the data up for large data. 
+~~~
+In [5]: index = db.read_text('https://archive.analytics.mybinder.org/index.jsonl').map(json.loads)
+In [6]: index
+Out[6]: dask.bag<loads, npartitions=1>
+In [7]: index.take(2)
+Out[7]:
+({'name': 'events-2018-11-03.jsonl', 'date': '2018-11-03', 'count': '7057'},
+ {'name': 'events-2018-11-04.jsonl', 'date': '2018-11-04', 'count': '7489'})
+~~~
+{: .output}
+
+We can perform some operations on these two files. Please note the Dask Bag API (in the provided links section) for the signatures of available functions and their requirements.
+
+Read the index file as a dask bag and perform a mapping of the data to the function json.loads(). This function loads strings into a json object - given it adheres to the json structure.
+
+~~~
+index = db.read_text('https://archive.analytics.mybinder.org/index.jsonl').map(json.loads)
+print(index)
+~~~
+{: .bash}
 
 ### Some links:
 
-on dask fundamentals
+on dask bag fundamentals
 https://docs.dask.org/en/latest/bag.html
 
-on limitations
+Bag API's
+https://docs.dask.org/en/latest/bag-api.html
+
+on bag limitations for background
 https://docs.dask.org/en/latest/shared.html
 
 
