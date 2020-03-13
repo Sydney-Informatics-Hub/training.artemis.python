@@ -44,6 +44,11 @@ https://docs.dask.org/en/latest/
 
 A Dask DataFrame is a large parallel DataFrame composed of many smaller Pandas DataFrames, split along the index. These Pandas DataFrames may live on disk for larger-than-memory computing on a single machine, or on many different machines in a cluster. One Dask DataFrame operation triggers many operations on the constituent Pandas DataFrames.
 
+<figure>
+  <img src="{{ page.root }}/fig/dask_pic2.png" style="margin:10px;width:600px"/>
+  <figcaption> Dask High Level Schema <a href="https://docs.dask.org/en/latest/dataframe.html/">https://docs.dask.org/en/latest/dataframe.html/</a></figcaption>
+</figure><br>
+
 Common Use Cases:
 Dask DataFrame is used in situations where Pandas is commonly needed, usually when Pandas fails due to data size or computation speed:
 - Manipulating large datasets, even when those datasets don’t fit in memory
