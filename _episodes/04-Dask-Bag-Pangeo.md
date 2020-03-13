@@ -16,9 +16,35 @@ Dask Bag implements operations like map, filter, groupby and aggregations on col
 
 Dask Bags are often used to do simple preprocessing on log files, JSON records, or other user defined Python objects
 
-Execution on bags provide two benefits:
+Execution on bags provide two ***benefits***:
 1. ***Parallel:*** data is split up, allowing multiple cores or machines to execute in parallel
 2. ***Iterating:*** data processes lazily, allowing smooth execution of ***larger-than-memory data***, even on a single machine within a single partition
+
+By default, dask.bag uses dask.multiprocessing for computation. As a benefit, Dask bypasses the GIL and uses multiple cores on pure Python objects. As a drawback, Dask Bag doesn’t perform well on computations that include a great deal of inter-worker communication.
+
+Because the multiprocessing scheduler requires moving functions between multiple processes, we encourage that Dask Bag users also install the cloudpickle library to enable the transfer of more complex functions
+
+What are the ***drawbacks*** ?
+
+ - Bag operations tend to be slower than array/DataFrame computations in the same way that standard Python containers tend to be slower than NumPy arrays and Pandas DataFrames
+ 
+ - Bags are immutable and so you can not change individual elements
+ 
+ - By default, bag relies on the multiprocessing scheduler, which has known limitations - the main ones being:
+  	a, The multiprocessing scheduler must serialize data between workers and the central process, which can be expensive
+	b, The multiprocessing scheduler must serialize functions between workers, which can fail. The Dask site recommends using 		cloudpickle to enable the transfer of more complex functions.
+
+### To learn Bag - Lets get our hands dirty with some examples
+
+
+
+### Some links:
+
+on dask fundamentals
+https://docs.dask.org/en/latest/bag.html
+
+on limitations
+https://docs.dask.org/en/latest/shared.html
 
 
 ## The PBS **job name** as a variable
