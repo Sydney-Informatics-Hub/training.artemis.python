@@ -1,18 +1,25 @@
 ---
-title: "More ways to automate"
+title: "Introducing dask Bag and more dask examples"
 teaching: 20
 exercises: 20
 questions:
-- "Further ways to automate jobs, with arrays and scripts"
+- "How do I deal with large irregular data and show me some real world examples of Dask"
 objectives:
-- "Grow your toolkit of automation methods"
+- "Deal with semi-structured and unstructured data in memory efficient and parallel manner"
 keypoints:
-- "The ```PBS_JOBNAME``` variable can also be used to batch analyses"
-- "Array jobs can replace _FOR_ loops in PBS scripts"
+- "Dask Bag uses map filter and group by operations on python objects or semi/unstrucutred data"
+- "dask.multiprocessing is under the hood"
 ---
 
-# Automating with Bash scripts
-This episode explores using _Bash_ functions and scripting to automate, or 'batch', computations on Artemis.
+# What is Dask Bag
+Dask Bag implements operations like map, filter, groupby and aggregations on collections of Python objects. It does this in parallel and in small memory using Python iterators.
+
+Dask Bags are often used to do simple preprocessing on log files, JSON records, or other user defined Python objects
+
+Execution on bags provide two benefits:
+1. ***Parallel:*** data is split up, allowing multiple cores or machines to execute in parallel
+2. ***Iterating:*** data processes lazily, allowing smooth execution of ***larger-than-memory data***, even on a single machine within a single partition
+
 
 ## The PBS **job name** as a variable
 
