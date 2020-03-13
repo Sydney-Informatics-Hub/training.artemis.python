@@ -170,9 +170,13 @@ data[data.city == 'Madison Heights'].compute().to_csv('Madison.csv')
 
 ### Custom made operations.... dask.delayed
 
-But what if you need to perform your own function, or a function outside of the pandas subset that dask dataframes make available. Dask delayed is your friend. It uses ***python decorator syntax*** to convert a function into a lazy executable. The functions can then be applied to build data pipeline operations in a similar manner to what we've just encountered.
+But what if you need to run your own function, or a function outside of the pandas subset that dask dataframes make available? Dask delayed is your friend. It uses ***python decorator syntax*** to convert a function into a lazy executable. The functions can then be applied to build data pipeline operations in a similar manner to what we've just encountered.
 
-In the /files directory, use your preferred editor to view the complex_system.py file. This script uses dask delayed functions that are applied to a sequence of data using pythonic ***list comprehension syntax*** . Lets get out of ipython and the interactive session if you are using it, and submit this file in the traditional PBS script manner.
+Lets explore a larger example of using dask dataframes and dask delayed functions.
+
+In the /files directory, use your preferred editor to view the complex_system.py file. This script uses dask delayed functions that are applied to a sequence of data using pythonic ***list comprehension syntax*** . The code simualtes financial defaults in a very theoretical way, and outputs the summation of these predicted defaults. 
+
+Please get out of ipython and the interactive session if you are using it, and submit this file in the traditional PBS script manner.
 
 
 ~~~
@@ -180,8 +184,18 @@ qsub complex_system.pbs
 
 ~~~
 
-### Task
-Make your own lazy function using the decorator syntax, and perform the computation on a column of the data previously used in the makedata.data() helper file. 
+~~~
+Delayed('add-c62bfd969d75abe76f3d8dcf2a9ef99c')
+407.5
+
+~~~
+{: .output}
+
+
+### Exercise:
+The above script is a great example of dask delayed functions that are applied to lists, made in an elegant pythonic syntax. Lets try using these delayed default functions on our data of income and occupations. 
+
+Make your own lazy function using the decorator syntax, and perform the computation you have described on a column of the data previously used in the makedata.data() helper file. For bonus points perform an aggregation on this column.
 
 
 ### Helpful links
