@@ -37,8 +37,7 @@ Responsive: Designed with interactive computing in mind, it provides rapid feedb
 Dask provides high level collections - these are ***Dask Dataframes, bags, and arrays***.
 On a low level, dask dynamic task schedulers to scale up or down processes, and presents parallel computations by implementing task graphs. It provides an alternative to scaling out tasks instead of threading (IO Bound) and multiprocessing (cpu bound).
 
-For more background info:
-https://docs.dask.org/en/latest/
+
 
 # Dask Dataframes
 
