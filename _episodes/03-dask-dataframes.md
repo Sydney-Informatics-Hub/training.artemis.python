@@ -28,6 +28,12 @@ Scales up: Runs resiliently on clusters with 1000s of cores
 Scales down: Trivial to set up and run on a laptop in a single process
 Responsive: Designed with interactive computing in mind, it provides rapid feedback and diagnostics to aid humans
 
+
+<figure>
+  <img src="{{ page.root }}/fig/dask_pic1.png" style="margin:10px;width:600px"/>
+  <figcaption> Dask High Level Schema <a href="https://docs.dask.org/en/latest/">https://docs.dask.org/en/latest/</a></figcaption>
+</figure><br>
+
 Dask provides high level collections - these are ***Dask Dataframes, bags, and arrays***.
 On a low level, dask dynamic task schedulers to scale up or down processes, and presents parallel computations by implementing task graphs. It provides an alternative to scaling out tasks instead of threading (IO Bound) and multiprocessing (cpu bound).
 
