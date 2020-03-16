@@ -6,9 +6,11 @@ questions:
 - "How do I deal with large irregular data and show me some real world examples of Dask"
 objectives:
 - "Deal with semi-structured and unstructured data in memory efficient and parallel manner"
+- "Show me examples of using Dask on Large Datasets"
 keypoints:
 - "Dask Bag uses map filter and group by operations on python objects or semi/unstrucutred data"
 - "dask.multiprocessing is under the hood"
+- "Xarray for holding scientific data"
 ---
 
 # What is Dask Bag
@@ -112,6 +114,32 @@ In practice its not realy a python package, but a collection of packages, suppor
 
 As such the Pangeo community supports using dask on HPC. We will run through an example of using our new found knowledge of dask on large dataset computation and visualisation.
 
+The example we will submit is an altered version of Pangeos meteorology use case found here:
+https://pangeo.io/use_cases/meteorology/newmann_ensemble_meteorology.html
+
+In the files, open the python script we will run called pangeo.py.
+~~~
+cd /project/Training/myname/files
+nano pangeo.py
+~~~
+
+Rather than using a dask dataframe, data is loaded from multiple netcdf files in the data folder relative to where the script resides. 
+Xarray is an opensource python package that uses dask in its inner workings. Its design to make working with multi-dimensional data easier by introducing labels in the form of dimensions, coordinates and attributes on top of raw NumPy-like arrays, which allows for a more intuitive, more concise, and less error-prone developer experience.
+
+Its particulary suited for working with netcdf files and its tightly integrated with dask parallel computing
+
+Steps to do:
+1. Alter the instance of the Client() object by redirecting the path in the local_directory argument to your /project/Training/myname folder. The Client object sets up a local cluster that uses all availble resources. In this case it is created on one compute node. The optional local_directory specifies a storage area that allows dask to copy temporary data on if RAM is insufficient to work on large datasets - i.e. its a path where dask can spill over some data to still perform data calculations. 
+2. Submit the ***pangeo.pbs*** file to the scheduler.
+
+~~~
+qsub pangeo.pbs
+~~~
+{: .bash}
+
+Two png files should be created. 
+
+
 
 ### Some links:
 
@@ -126,6 +154,9 @@ https://docs.dask.org/en/latest/shared.html
 
 Pangeo info:
 https://pangeo.io/#what-is-pangeo
+
+Xarray:
+http://xarray.pydata.org/en/stable/
 
 
 <br>
