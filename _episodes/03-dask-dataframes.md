@@ -7,6 +7,7 @@ questions:
 objectives:
 - "Intro to Dask concepts and High level datastructures"
 - "Use dask dataframes"
+- "Use dask delayed functions"
 keypoints:
 - "Dask builds on numpy and pandas APIs but operates in a parallel manner"
 - "Computations are by default lazy and must be triggered - this reduces unneccessary computation time"
@@ -202,12 +203,14 @@ Delayed('add-c62bfd969d75abe76f3d8dcf2a9ef99c')
 {: .output}
 
 
-### Exercise:
+### Exercise 1 - Medium to Difficult:
 The above script is a great example of dask delayed functions that are applied to lists, made in an elegant pythonic syntax. Lets try using these delayed default functions on our data of income and occupations. 
 
 Make your own lazy function using the decorator syntax, and perform the computation you have described on a column of the data previously used in the makedata.data() helper file. For bonus points perform an aggregation on this column.
 
-
+## Exercise 2 - Easy:
+Given what you know of dask delayed function, please alter the file called "computepi_pawsey.py", which calculated estimates of pi without using extra parallel libraries, and alter the code with a dask delayed wrapper to make it lazy and fast 
+ 
 ### Helpful links
 
 Dask Dataframe intro
