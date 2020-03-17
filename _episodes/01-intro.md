@@ -39,11 +39,46 @@ We will cover a few of the ways that you can potentially speed up Python. As we 
 Some key words that might come up:
 
 * Vectorisation
-* Multi threading
+* Multi threading/processing
 * MPI message parsing interface
 * GPU programming
-* CPU, core, node, thread
+* CPU, core, node, thread, process, worker, job, task
 * Parallelisation
+* MapReduce
+
+
+# What does parallel mean
+Seperate workers or processes exchange information and data.
+
+### Embarrassingly parallel:
+* requires no communication between processors
+examples:
+* running same algorithm for a range of input parameters
+* rendering video frames in computer animation
+* proof-of-work systems used in cryptocurrency
+
+
+### Coarse-grained parallel:
+Requires occasional communication between processors
+
+### Fine-grained parallel:
+Requires frequent communication between processors
+
+examples:
+* finite difference time-stepping on parallel grid
+* domain decomposition modeling for finite element method
+
+
+# MPI: Message Passing Interface
+MPI is a standardized and portable message-passing system designed to function on a wide variety of parallel computers.
+The standard defines the syntax and semantics of a core of library routines useful to a wide range of users writing portable message-passing programs in C, C++, and Fortran. There are several well-tested and efficient implementations of MPI, many of which are open-source or in the public domain.
+
+http://openmpi.org
+
+http://mpich.org
+
+**MPI for Python**
+mpi4py provides bindings of the MPI standard for the Python programming language, allowing any Python program to exploit multiple processors.
 
 
 
