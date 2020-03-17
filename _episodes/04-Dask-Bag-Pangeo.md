@@ -110,32 +110,99 @@ print(index)
 
 ### PANGEO GEOSCIENCE EXAMPLE
 Pangeo is first and foremost a community promoting open, reproducible, and scalable science.
+
 In practice its not realy a python package, but a collection of packages, supported datasets, tutorials and documentation used to promote scalable science. Its motivation was driven by data becoming increasingly large, the fragmentation of software making reproducability difficult, and a growing technology gap between industry and traditional science.
 
-As such the Pangeo community supports using dask on HPC. We will run through an example of using our new found knowledge of dask on large dataset computation and visualisation.
+As such the Pangeo community supports using dask on HPC. We will run through an example of using our new found knowledge of dask on large dataset computation and visualisation.Specifically this pangeo example is a good illustration of dealing with an IO bound task.
 
 The example we will submit is an altered version of Pangeos meteorology use case found here:
 https://pangeo.io/use_cases/meteorology/newmann_ensemble_meteorology.html
 
-In the files, open the python script we will run called pangeo.py.
+
+### What is Xarray
+
+Rather than using a dask dataframe, data is loaded from multiple netcdf files in the data folder relative to where the script resides. 
+Xarray is an opensource python package that uses dask in its inner workings. Its design to make working with multi-dimensional data easier by introducing labels in the form of dimensions, coordinates and attributes on top of raw NumPy-like arrays, which allows for a more intuitive, more concise, and less error-prone developer experience.
+
+Its particulary suited for working with netcdf files and its tightly integrated with dask parallel computing. 
+
+Lets investigate a small portion of the data before looking at the complete script.
+
+~~~
+cd /project/Training/myname/data
+ipython
+import xarray as xr
+data = xr.open_dataset('conus_daily_eighth_2008_ens_mean.nc4')
+data
+~~~
+{: .bash}
+
+You should see the following metadata that holds 3 dimenstional information (latitude, longditude and time) on temperature and precipitation measurements.
+~~~
+
+In [41]: data = xr.open_dataset('conus_daily_eighth_2008_ens_mean.nc4')
+
+In [42]: data
+Out[42]:
+<xarray.Dataset>
+Dimensions:    (lat: 224, lon: 464, time: 366)
+Coordinates:
+  * time       (time) datetime64[ns] 2008-01-01 2008-01-02 ... 2008-12-31
+  * lat        (lat) float64 25.12 25.25 25.38 25.5 ... 52.62 52.75 52.88 53.0
+  * lon        (lon) float64 -124.9 -124.8 -124.6 -124.5 ... -67.25 -67.12 -67.0
+Data variables:
+    elevation  (lat, lon) float64 ...
+    pcp        (time, lat, lon) float32 ...
+    t_mean     (time, lat, lon) float32 ...
+    t_range    (time, lat, lon) float32 ...
+Attributes:
+    history:      Wed Oct 24 13:59:29 2018: ncks -4 -L 1 conus_daily_eighth_2...
+    NCO:          netCDF Operators version 4.7.4 (http://nco.sf.net)
+    institution:  National Center fo Atmospheric Research (NCAR), Boulder, CO...
+    title:        CONUS daily 12-km gridded ensemble precipitation and temper...
+~~~
+{: .output}
+
+Find out how large is the file.
+~~~
+print('memory gb',format(data.nbytes / 1e9))
+~~~
+{: .bash}
+
+What is the average elevation over lat and long dimensions.
+~~~
+data.elevation.mean()
+~~~
+{: .bash}
+
+~~~
+In [50]: data.elevation.mean()
+Out[50]:
+<xarray.DataArray 'elevation' ()>
+array(709.99515723)
+~~~
+{: .output}
+
+
+What is the average elevation for each longitude
+~~~
+data.elevation.mean(dim='lat')
+~~~
+
+We will now run a script to the scheduler that loads multiple files, performs calculations on the xarray data and plots the results.
+
+Steps to do:
+1. In the files directory, open the python script we will run called pangeo.py.
 ~~~
 cd /project/Training/myname/files
 nano pangeo.py
 ~~~
 
-Rather than using a dask dataframe, data is loaded from multiple netcdf files in the data folder relative to where the script resides. 
-Xarray is an opensource python package that uses dask in its inner workings. Its design to make working with multi-dimensional data easier by introducing labels in the form of dimensions, coordinates and attributes on top of raw NumPy-like arrays, which allows for a more intuitive, more concise, and less error-prone developer experience.
+2. Alter the instance of the Client() object by redirecting the path in the local_directory argument to your /project/Training/myname folder. The Client object sets up a local cluster that uses all availble resources. In this case it is created on one compute node. The optional local_directory specifies a storage area that allows dask to copy temporary data on if RAM is insufficient to work on large datasets - i.e. its a path where dask can spill over some data to still perform data calculations. 
 
-Its particulary suited for working with netcdf files and its tightly integrated with dask parallel computing
+3. Submit the ***pangeo.pbs*** file to the scheduler.
 
-
-
-Steps to do:
-1. Alter the instance of the Client() object by redirecting the path in the local_directory argument to your /project/Training/myname folder. The Client object sets up a local cluster that uses all availble resources. In this case it is created on one compute node. The optional local_directory specifies a storage area that allows dask to copy temporary data on if RAM is insufficient to work on large datasets - i.e. its a path where dask can spill over some data to still perform data calculations. 
-
-2. Submit the ***pangeo.pbs*** file to the scheduler.
-
-3. Notice the xarray open_mfdaset function loads multiple files that match a naming pattern. Chunking size is specific to the axis ***time***, one chunck for each year. 
+4. Notice the xarray open_mfdaset function loads multiple files that match a naming pattern. Chunking size is specific to the axis ***time***, one chunck for each year. 
 
 ~~~
 qsub pangeo.pbs
@@ -175,6 +242,8 @@ https://pangeo.io/#what-is-pangeo
 Xarray:
 http://xarray.pydata.org/en/stable/
 
+Xarray API:
+http://xarray.pydata.org/en/stable/generated/xarray.open_dataset.html
 
 <br>
 
