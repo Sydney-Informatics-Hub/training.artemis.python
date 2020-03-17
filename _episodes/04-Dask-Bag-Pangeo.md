@@ -128,16 +128,33 @@ Xarray is an opensource python package that uses dask in its inner workings. Its
 
 Its particulary suited for working with netcdf files and its tightly integrated with dask parallel computing
 
+
+
 Steps to do:
 1. Alter the instance of the Client() object by redirecting the path in the local_directory argument to your /project/Training/myname folder. The Client object sets up a local cluster that uses all availble resources. In this case it is created on one compute node. The optional local_directory specifies a storage area that allows dask to copy temporary data on if RAM is insufficient to work on large datasets - i.e. its a path where dask can spill over some data to still perform data calculations. 
+
 2. Submit the ***pangeo.pbs*** file to the scheduler.
+
+3. Notice the xarray open_mfdaset function loads multiple files that match a naming pattern. Chunking size is specific to the axis ***time***, one chunck for each year. 
 
 ~~~
 qsub pangeo.pbs
 ~~~
 {: .bash}
 
-Two png files should be created. 
+Png files should be created based on calculation in the code that measure the variance in temperatures (max minus min observations). As seen before, these calculations are triggered by a ***.compute()*** call. Two images are created, with one demostrating how we can persist the xarray dataset in memory for quick retrievals via the ***.persist()*** call. 
+
+Lets see the image. If you have X11 forwarding enabled you can view it directly from artemis. Alternatively, use scp to copy it locally and view.
+~~~
+module load imagemagick
+display variance_temp.png &
+~~~
+{: .bash}
+
+<figure>
+  <img src="{{ page.root }}/fig/USA_Temp.png" style="margin:10px;width:600px"/>
+  <figcaption> Dask Temperature visualisation </figcaption>
+</figure><br>
 
 
 
