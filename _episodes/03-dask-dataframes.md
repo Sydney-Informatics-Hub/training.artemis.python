@@ -3,7 +3,7 @@ title: "Intro to Dask and Dask Dataframes"
 teaching: 25
 exercises: 5
 questions:
-- Scale code in a familiar way
+- Use a modern python library and elegant syntax for performance benefits
 objectives:
 - "Intro to Dask concepts and High level datastructures"
 - "Use dask dataframes"
