@@ -28,7 +28,7 @@ Some basic concepts in the multiprocessing library are:
 To implement multiprocessing in its basic form, you can implement the below in an interactive session.
 
 ~~~
-qsub -I -P Training -l ncpus=6:mem=6GB -l walltime=00:10:00
+qsub -I -P Training -l select=1:ncpus=6:mem=6GB -l walltime=00:10:00
 ~~~
 
 
