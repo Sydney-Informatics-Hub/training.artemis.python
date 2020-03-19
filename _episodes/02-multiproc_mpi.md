@@ -65,9 +65,11 @@ The output should be
 ~~~
 {: .output}
 
+## Getting Data and Files for this Course:
+
 Lets run a larger piece of code in the traditional PBS script manner that utilises the multiprocessing library. You'll need some files for this and other training demonstrations covered today. 
 
-If your not still in an interactive session, create another one
+If your not still in an interactive session, create another one. This is option but will make transfers faster - if there are enough cpu resources on the training node.
 
 ~~~
 qsub -I -P Training -l select=1:ncpus=6:mem=6GB -l walltime=00:10:00
