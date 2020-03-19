@@ -65,7 +65,7 @@ Lets activate a conda environment with all the python packages pre installed for
 We will interactively learn dask dataframe fundamentals, so running on the compute nodes interactively is advisable for this section.
 
 ~~~
-qsub -I -P Training -l select=1:ncpus=4:mem=6GB -l walltime=00:30:00
+qsub -I -P Training -l select=1:ncpus=2:mem=6GB -l walltime=00:30:00
 source /project/Training/kmarTrain/miniconda3/bin/activate
 ~~~
 
