@@ -72,7 +72,7 @@ source /project/Training/kmarTrain/miniconda3/bin/activate
 
 You should see an extra conda environment named dask which we will activate
 ~~~
-conda list env
+conda info --envs 
 ~~~
 {:. bash}
 
