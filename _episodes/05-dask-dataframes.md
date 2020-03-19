@@ -68,7 +68,6 @@ We will interactively learn dask dataframe fundamentals, so running on the compu
 qsub -I -P Training -l select=1:ncpus=4:mem=6GB -l walltime=00:30:00
 source /project/Training/kmarTrain/miniconda3/bin/activate
 ~~~
-{: .bash}
 
 You should see an extra conda environment named dask which we will activate
 ~~~
@@ -89,7 +88,6 @@ conda activate dask
 cd /project/Training/myname/files
 ipython
 ~~~
-{: .bash}
 
 We will generate some data using one of the python files makedata.py by importing it in ipython. 
 ~~~
