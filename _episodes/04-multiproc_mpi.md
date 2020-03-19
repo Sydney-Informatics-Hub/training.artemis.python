@@ -59,7 +59,6 @@ And run it with:
 ~~~
 python basic.py
 ~~~
-{: .bash}
 
 The output should be:
 ~~~
