@@ -178,24 +178,23 @@ data[data.city == 'Madison Heights'].compute().to_csv('Madison.csv')
 
 ### Custom made operations.... dask.delayed
 
-But what if you need to run your own function, or a function outside of the pandas subset that dask dataframes make available? Dask delayed is your friend. It uses ***python decorator syntax*** to convert a function into a lazy executable. The functions can then be applied to build data pipeline operations in a similar manner to what we've just encountered.
+But what if you need to run your own function, or a function outside of the pandas subset that dask dataframes make available? Dask delayed is your friend. It uses ***python decorator syntax*** to convert a function into a lazy executable. The functions can then be applied to build data pipeline operations in a similar manner to what we have just encountered.
 
-Lets explore a larger example of using dask dataframes and dask delayed functions.
+Let's explore a larger example of using dask dataframes and dask delayed functions.
 
-In the /files directory, use your preferred editor to view the complex_system.py file. This script uses dask delayed functions that are applied to a sequence of data using pythonic ***list comprehension syntax*** . The code simualtes financial defaults in a very theoretical way, and outputs the summation of these predicted defaults. 
+In the ```/files``` directory, use your preferred editor to view the ```complex_system.py``` file. This script uses dask delayed functions that are applied to a sequence of data using pythonic ***list comprehension syntax*** . The code simualtes financial defaults in a very theoretical way, and outputs the summation of these predicted defaults. 
 
-Please get out of ipython and the interactive session if you are using it, and submit this file in the traditional PBS script manner.
-
+Please exit your ipython shell with  ```exit```, and then exit interactive session if you are still in it (a quick check can be made by looking at the shell location  ```ict_hpctrain1@hpc213``` you are on a compute node or ```ict_hpctrain1@login3``` is you are on a login node). Use the command ```exit``` here also to end the interactive session. Now submit this PBS script in the traditional way to the scheduler. i.e
 
 ~~~
 qsub complex_system.pbs
-
 ~~~
+
+When that script has completed, the output file ```testcomplex.o??????``` should contain something like this:
 
 ~~~
 Delayed('add-c62bfd969d75abe76f3d8dcf2a9ef99c')
 407.5
-
 ~~~
 {: .output}
 
