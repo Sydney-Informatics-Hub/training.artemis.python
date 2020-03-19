@@ -15,10 +15,12 @@ keypoints:
 
 While the PBS resource request #PBS -l ncpus signals to the scheduler how many cpus you want your job to run, you may need more flexible ways to manage resources from within python code. This is traditionally done with the **multiprocessing** library. 
 
-With multiprocessing, Python creates new processes. A process here can be thought of as almost a completely different program, though technically they’re usually defined as a collection of resources where the resources include memory, file handles and things like that. One way to think about it is that each process runs in its own Python interpreter, and multiprocessing farms out parts of your program to run on each process.
+With multiprocessing, Python creates new processes. A process here can be thought of as almost a completely different program, though technically they’re usually defined as a collection of resources where the resources include memory, file handles and things like that. 
+
+One way to think about it is that each ***process runs in its own Python interpreter***, and multiprocessing farms out parts of your program to run on each process.
 
 ## Some terminology
-The multiprocessing library was designed to break down the Global Interpreter Lock (GIL) that limits one thread to control python interpreter. In Python, the things that are occurring simultaneously are called by different names (thread, task, process). While they all fall under the definition of concurrency (multiple things happening anaologous to different trains of thought) - only multiprocessing actually runs these trains of thought at literally the same time. We'll only cover multiprocessing that assist in cpu bound operations - but keep in mind others exist and could be useful for IO bound operations (like reading files from the internet - files etc).
+The multiprocessing library was designed to break down the Global Interpreter Lock (GIL) that limits one thread to control python interpreter. In Python, the things that are occurring simultaneously are called by different names (thread, task, process). While they all fall under the definition of concurrency (multiple things happening anaologous to different trains of thought) - only multiprocessing actually runs these trains of thought at literally the same time. We'll only cover multiprocessing here which assists in cpu bound operations - but keep in mind others exist.
 
 Some basic concepts in the multiprocessing library are:
 1. the ```Pool(processes)``` object creates a pool of processes. processes is the number of worker processes to use (i.e python interpreters). If processes is None then the number returned by os.cpu_count() is used.
