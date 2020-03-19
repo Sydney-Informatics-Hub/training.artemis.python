@@ -32,6 +32,8 @@ To implement multiprocessing in its basic form, you can implement the below in a
 qsub -I -P Training -l select=1:ncpus=2:mem=6GB -l walltime=00:10:00
 ~~~
 
+Keep in mind the automatic behaviour for Artemis, once an interactive session has started, is to put you in your home directory. 
+
 Now load in a Python 3 module we can use. Note, this is pre-installed on Artemis, you can use your own specific versions as required.
 ~~~
 module load python/3.7.2
@@ -108,7 +110,7 @@ There is generally a sweet spot in how many processes you create to optimise the
 
 [https://realpython.com/python-concurrency/](https://realpython.com/python-concurrency/)
 
-
+[https://docs.python.org/3/library/multiprocessing.html](https://docs.python.org/3/library/multiprocessing.html)
 
 
 <br>
