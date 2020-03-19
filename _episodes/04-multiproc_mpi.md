@@ -26,19 +26,7 @@ Some basic concepts in the multiprocessing library are:
 1. the ```Pool(processes)``` object creates a pool of processes. ```processes``` is the number of worker processes to use (i.e Python interpreters). If ```processes``` is ```None``` then the number returned by ```os.cpu_count()``` is used.
 2. The ```map(function,list)``` attribute of this object uses the pool to map a defined function to a list/iterator object
 
-To implement multiprocessing in its basic form, you can implement the below in an interactive session.
-
-~~~
-qsub -I -P Training -l select=1:ncpus=2:mem=6GB -l walltime=00:10:00
-~~~
-
-Keep in mind the automatic behaviour for Artemis, once an interactive session has started, is to put you in your home directory. 
-
-Now load in a Python 3 module we can use. Note, this is pre-installed on Artemis, you can use your own specific versions as required.
-~~~
-module load python/3.7.2
-~~~
-
+To implement multiprocessing in its basic form.
 Create a small python file called ```basic.py``` with the below code.
 ~~~
 from multiprocessing import Pool
@@ -54,6 +42,19 @@ def main():
 main()
 ~~~
 {: .bash}
+
+Now, you run this in an interactive session.
+
+~~~
+qsub -I -P Training -l select=1:ncpus=2:mem=6GB -l walltime=00:10:00
+~~~
+
+Keep in mind the automatic behaviour for Artemis, once an interactive session has started, is to put you in your home directory. 
+
+Now load in a Python 3 module we can use. Note, this is pre-installed on Artemis, you can use your own specific versions as required.
+~~~
+module load python/3.7.2
+~~~
 
 And run it with:
 ~~~
