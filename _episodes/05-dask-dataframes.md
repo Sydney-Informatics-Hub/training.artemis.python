@@ -21,13 +21,13 @@ Dynamic task scheduling optimized for computation. This is similar to Airflow, L
 
 Dask emphasizes the following virtues:
 
-Familiar: Provides parallelized NumPy array and Pandas DataFrame objects
-Flexible: Provides a task scheduling interface for more custom workloads and integration with other projects.
-Native: Enables distributed computing in pure Python with access to the PyData stack.
-Fast: Operates with low overhead, low latency, and minimal serialization necessary for fast numerical algorithms
-Scales up: Runs resiliently on clusters with 1000s of cores
-Scales down: Trivial to set up and run on a laptop in a single process
-Responsive: Designed with interactive computing in mind, it provides rapid feedback and diagnostics to aid humans
+* Familiar: Provides parallelized NumPy array and Pandas DataFrame objects
+* Flexible: Provides a task scheduling interface for more custom workloads and integration with other projects.
+* Native: Enables distributed computing in pure Python with access to the PyData stack.
+* Fast: Operates with low overhead, low latency, and minimal serialization necessary for fast numerical algorithms
+* Scales up: Runs resiliently on clusters with 1000s of cores
+* Scales down: Trivial to set up and run on a laptop in a single process
+* Responsive: Designed with interactive computing in mind, it provides rapid feedback and diagnostics to aid humans
 
 
 <figure>
