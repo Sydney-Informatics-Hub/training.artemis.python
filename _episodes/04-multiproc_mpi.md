@@ -13,36 +13,32 @@ keypoints:
 
 ## Python Multiprocessing
 
-While the PBS resource request #PBS -l ncpus signals to the scheduler how many cpus you want your job to run, you may need more flexible ways to manage resources from within python code. This is traditionally done with the **multiprocessing** library. 
+The PBS resource request ```#PBS -l select=1:ncpus=1``` signals to the scheduler how many nodes and cpus you want your job to run with. But from within Python you may need more flexible ways to manage resources. This is traditionally done with the ***multiprocessing*** library. 
 
-With multiprocessing, Python creates new processes. A process here can be thought of as almost a completely different program, though technically they’re usually defined as a collection of resources where the resources include memory, file handles and things like that. 
+With multiprocessing, Python creates new processes. A process here can be thought of as almost a completely different program, though technically they are usually defined as a collection of resources where the resources include memory, file handles and things like that. 
 
 One way to think about it is that each ***process runs in its own Python interpreter***, and multiprocessing farms out parts of your program to run on each process.
 
 ## Some terminology
-The multiprocessing library was designed to break down the Global Interpreter Lock (GIL) that limits one thread to control python interpreter. In Python, the things that are occurring simultaneously are called by different names (thread, task, process). While they all fall under the definition of concurrency (multiple things happening anaologous to different trains of thought) - only multiprocessing actually runs these trains of thought at literally the same time. We'll only cover multiprocessing here which assists in cpu bound operations - but keep in mind others exist.
+The multiprocessing library was designed to break down the **Global Interpreter Lock (GIL)** that limits one thread to control the Python interpreter. In Python, the things that are occurring simultaneously are called by different names (thread, task, process). While they all fall under the definition of concurrency (multiple things happening anaologous to different trains of thought) - only multiprocessing actually runs these trains of thought at literally the same time. We will only cover multiprocessing here which assists in CPU bound operations - but keep in mind other methods exist.
 
 Some basic concepts in the multiprocessing library are:
-1. the ```Pool(processes)``` object creates a pool of processes. processes is the number of worker processes to use (i.e python interpreters). If processes is None then the number returned by os.cpu_count() is used.
+1. the ```Pool(processes)``` object creates a pool of processes. ```processes``` is the number of worker processes to use (i.e Python interpreters). If ```processes``` is ```None``` then the number returned by ```os.cpu_count()``` is used.
 2. The ```map(function,list)``` attribute of this object uses the pool to map a defined function to a list/iterator object
-
 
 To implement multiprocessing in its basic form, you can implement the below in an interactive session.
 
 ~~~
-qsub -I -P Training -l select=1:ncpus=6:mem=6GB -l walltime=00:10:00
+qsub -I -P Training -l select=1:ncpus=2:mem=6GB -l walltime=00:10:00
 ~~~
 
-
-Python 3 is neccessary
+Now load in a Python 3 module we can use. Note, this is pre-installed on Artemis, you can use your own specific versions as required.
 ~~~
 module load python/3.7.2
 ~~~
 
-Create your basic python file with the below code and run
-
+Create a small python file called ```basic.py``` with the below code.
 ~~~
-
 from multiprocessing import Pool
 
 def addit(x):
@@ -50,24 +46,29 @@ def addit(x):
 
 def main():
         print(addit(4))
-
         with Pool(2) as p:
                 print(p.map(addit,[1,2,3]))
 
 main()
-
 ~~~
 {: .bash}
 
-The output should be
+And run it with:
 ~~~
-[1, 4, 9]
+python basic.py
+~~~
+{: .bash}
+
+The output should be:
+~~~
+5
+[2, 3, 4]
 ~~~
 {: .output}
 
 ## Getting Data and Files for this Course:
 
-Lets run a larger piece of code in the traditional PBS script manner that utilises the multiprocessing library. You'll need some files for this and other training demonstrations covered today. 
+Let's run a larger piece of code in the traditional PBS script manner that utilises the multiprocessing library. You will need some files for this and other training demonstrations covered today. 
 
 If your not still in an interactive session, create another one. This is option but will make transfers faster - if there are enough cpu resources on the training node.
 
@@ -95,14 +96,17 @@ qsub run_pi.pbs
 
 The pbs script should submit two jobs that approximate pi in the same way, except one using the multiprocessing library and is slightly faster even though the same Artemis resources are requested.
 
+While it is running, have a look at the code.
+
+When it is completed, check out the output of the two methods in ```out_pi.o?????```. Which method was faster? Did you get the kind of speed-up you were expecting?
+
 ## Keep in Mind
 
 There is generally a sweet spot in how many processes you create to optimise the run time. A large number of python processes is generally not advisable, as it involves a large fixed cost in setting up many python interpreters and its supporting infrastructure. Play around with different numbers of processes in the pool(processes) statement to see how the runtime varies. 
 
 ## Useful links
 
-https://realpython.com/python-concurrency/
-
+[https://realpython.com/python-concurrency/](https://realpython.com/python-concurrency/)
 
 
 
