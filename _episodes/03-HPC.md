@@ -12,8 +12,7 @@ keypoints:
 
 ---
 
-
-# Connect to Artemis
+#Connect to Artemis
 
 If you followed the [Setup]({{ page.root }}/setup) instructions, then you should already have the required software installed. If not, _please go do this now_!
 
