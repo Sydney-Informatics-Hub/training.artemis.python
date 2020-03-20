@@ -249,9 +249,4 @@ Xarray API:
 
 <br>
 
-___
-**Notes**   
-<sup id="f1">1[↩](#a1)</sup>In this construction, only either _j_ or _m_ are required, so ```:j``` will retrieve the _j_-th element and beyond, whilst ```::m``` will retrieve the first _m_ elements (up to element _m-1_, as the indexing starts with _0_).
 
-___
-<br>
