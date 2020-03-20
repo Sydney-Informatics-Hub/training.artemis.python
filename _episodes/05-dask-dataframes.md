@@ -134,6 +134,19 @@ data2 = data[data.age > 60]
 ~~~
 {: .python}
 
+Apply a function to a column
+~~~
+data.income.apply(lambda x: x * 1000).head(5)
+~~~
+{: .bash}
+
+Assign values to a new column
+
+~~~
+data = data.assign(dummy = 1)
+~~~
+{:. bash}
+
 group by operation - calculate the average incomes by occupation. Notice the compute() trigger that performs the operations.
 
 ~~~
