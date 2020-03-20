@@ -15,11 +15,20 @@ keypoints:
 ---
 This episode shows you a few of the basic tools that we can use in Python to make our code go faster.
 
-# Loops, Iterators, and Genorators
+# Loops and Iterators
+The simplest thing in python to make fast is perhaps a loop where each exuction of the loop is indepent of everything else, fo example.
+
+groc_list=[banana,apple,orange]
+for item in groceries1
+groc_comp = [expression(i) for i in old_list if filter(i)]
 
 # Vectorising code with numpy and pandas
 
+String matching report example.
+
 # Multi-threading/processing 
+
+python -m cProfile MYSCRIPT.py myinput1 myinpit2 myinputetc > out.txt
 
 # MPI: Message Passing Interface
 MPI is a standardized and portable message-passing system designed to function on a wide variety of parallel computers.
