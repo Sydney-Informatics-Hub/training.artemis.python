@@ -171,13 +171,13 @@ Find out how large is the file.
 ~~~
 print('memory gb',format(data.nbytes / 1e9))
 ~~~
-{: .bash}
+{: .python}
 
 What is the average elevation over lat and long dimensions.
 ~~~
 data.elevation.mean()
 ~~~
-{: .bash}
+{: .python}
 
 ~~~
 In [50]: data.elevation.mean()
@@ -192,8 +192,9 @@ What is the average elevation for each longitude
 ~~~
 data.elevation.mean(dim='lat')
 ~~~
+{: .python}
 
-We will now run a script to the scheduler that loads multiple files, performs calculations on the xarray data and plots the results.
+Exit from your ipython session. Now we will now run a script to the scheduler that loads multiple files, performs calculations on the xarray data and plots the results.
 
 Steps to do:
 1. In the files directory, open the python script we will run called pangeo.py.
@@ -204,14 +205,12 @@ nano pangeo.py
 
 2. Alter the instance of the Client() object by redirecting the path in the local_directory argument to your /project/Training/myname folder. The Client object sets up a local cluster that uses all availble resources. In this case it is created on one compute node. The optional local_directory specifies a storage area that allows dask to copy temporary data on if RAM is insufficient to work on large datasets - i.e. its a path where dask can spill over some data to still perform data calculations. 
 
-3. Submit the ***pangeo.pbs*** file to the scheduler.
+3. Notice the xarray open_mfdaset function loads multiple files that match a naming pattern. Chunking size is specific to the axis ***time***, one chunck for each year. 
 
-4. Notice the xarray open_mfdaset function loads multiple files that match a naming pattern. Chunking size is specific to the axis ***time***, one chunck for each year. 
-
+4. Submit the ```pangeo.pbs``` file to the scheduler.
 ~~~
 qsub pangeo.pbs
 ~~~
-{: .bash}
 
 Png files should be created based on calculation in the code that measure the variance in temperatures (max minus min observations). As seen before, these calculations are triggered by a ***.compute()*** call. Two images are created, with one demostrating how we can persist the xarray dataset in memory for quick retrievals via the ***.persist()*** call. 
 
@@ -220,7 +219,6 @@ Lets see the image. If you have X11 forwarding enabled you can view it directly 
 module load imagemagick
 display variance_temp.png &
 ~~~
-{: .bash}
 
 <figure>
   <img src="{{ page.root }}/fig/USA_Temp.png" style="margin:10px;width:600px"/>
@@ -232,22 +230,22 @@ display variance_temp.png &
 ### Some links:
 
 on dask bag fundamentals
-https://docs.dask.org/en/latest/bag.html
+[https://docs.dask.org/en/latest/bag.html](https://docs.dask.org/en/latest/bag.html)
 
 Bag API's:
-https://docs.dask.org/en/latest/bag-api.html
+[https://docs.dask.org/en/latest/bag-api.html](https://docs.dask.org/en/latest/bag.html)
 
 Dask bag limitations:
-https://docs.dask.org/en/latest/shared.html
+[https://docs.dask.org/en/latest/shared.html](https://docs.dask.org/en/latest/bag.html)
 
 Pangeo info:
-https://pangeo.io/#what-is-pangeo
+[https://pangeo.io/#what-is-pangeo](https://pangeo.io/#what-is-pangeo)
 
 Xarray:
-http://xarray.pydata.org/en/stable/
+[http://xarray.pydata.org/en/stable/](http://xarray.pydata.org/en/stable/)
 
 Xarray API:
-http://xarray.pydata.org/en/stable/generated/xarray.open_dataset.html
+[http://xarray.pydata.org/en/stable/generated/xarray.open_dataset.html](http://xarray.pydata.org/en/stable/generated/xarray.open_dataset.html)
 
 <br>
 
