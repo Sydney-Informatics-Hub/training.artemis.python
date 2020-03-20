@@ -68,11 +68,13 @@ We will interactively learn dask dataframe fundamentals, so running on the compu
 qsub -I -P Training -l select=1:ncpus=2:mem=6GB -l walltime=00:30:00
 source /project/Training/kmarTrain/miniconda3/bin/activate
 ~~~
+{: .bash}
 
 You should see an extra conda environment named dask which we will activate
 ~~~
 conda info --envs 
 ~~~
+{: .bash}
 
 ~~~
                          /home/kmar7637/miniconda3
@@ -188,6 +190,7 @@ Please exit your ipython shell with  ```exit```, and then exit interactive sessi
 ~~~
 qsub complex_system.pbs
 ~~~
+{: .bash}
 
 When that script has completed, the output file ```testcomplex.o??????``` should contain something like this:
 
