@@ -41,9 +41,9 @@ What are the ***drawbacks*** ?
 Lets get back to ipython, ensuring that the dask conda environment is still activate.
 
 ~~~
+qsub -I -P Training -l select=1:ncpus=2:mem=4GB -l walltime=00:40:00 (depending on class participation 24 cpu limit)
 source /project/Training/kmarTrain/miniconda3/bin/activate
 conda activate dask
-qsub -I -P Training -l select=1:ncpus=4:mem=4GB -l walltime=00:40:00 (depending on class participation 24 cpu limit)
 cd /project/Training/myname
 ipython
 ~~~
