@@ -109,9 +109,9 @@ print(index)
 {: .bash}
 
 ### PANGEO GEOSCIENCE EXAMPLE
-Pangeo is first and foremost a community promoting open, reproducible, and scalable science.
+Pangeo is a community promoting open, reproducible, and scalable science.
 
-In practice its not realy a python package, but a collection of packages, supported datasets, tutorials and documentation used to promote scalable science. Its motivation was driven by data becoming increasingly large, the fragmentation of software making reproducability difficult, and a growing technology gap between industry and traditional science.
+In practice it is not realy a python package, but a collection of packages, supported datasets, tutorials and documentation used to promote scalable science. Its motivation was driven by data becoming increasingly large, the fragmentation of software making reproducability difficult, and a growing technology gap between industry and traditional science.
 
 As such the Pangeo community supports using dask on HPC. We will run through an example of using our new found knowledge of dask on large dataset computation and visualisation.Specifically this pangeo example is a good illustration of dealing with an IO bound task.
 
@@ -124,18 +124,22 @@ https://pangeo.io/use_cases/meteorology/newmann_ensemble_meteorology.html
 Rather than using a dask dataframe, data is loaded from multiple netcdf files in the data folder relative to where the script resides. 
 Xarray is an opensource python package that uses dask in its inner workings. Its design to make working with multi-dimensional data easier by introducing labels in the form of dimensions, coordinates and attributes on top of raw NumPy-like arrays, which allows for a more intuitive, more concise, and less error-prone developer experience.
 
-Its particulary suited for working with netcdf files and its tightly integrated with dask parallel computing. 
+It is particulary suited for working with netcdf files and is tightly integrated with dask parallel computing. 
 
-Lets investigate a small portion of the data before looking at the complete script.
+Let's investigate a small portion of the data before looking at the complete script. Open an ipython terminal inside the data folder
 
 ~~~
 cd /project/Training/myname/data
 ipython
+~~~
+
+And have a look at the data
+~~~
 import xarray as xr
 data = xr.open_dataset('conus_daily_eighth_2008_ens_mean.nc4')
 data
 ~~~
-{: .bash}
+{: .python}
 
 You should see the following metadata that holds 3 dimenstional information (latitude, longditude and time) on temperature and precipitation measurements.
 ~~~
