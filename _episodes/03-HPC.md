@@ -5,14 +5,14 @@ exercises: 5
 questions:
 - "How can you scale up beyond your local machine?"
 objectives:
-- "Refresh how to connect to Artmei HPC"
+- "Refresh how to connect to Artemis HPC"
 keypoints:
-- "Several methods to connect to a remote machine"
-- "Get access to more resources than your loacl computer"
+- "Several methods and tools to connect to a remote machine"
+- "Get access to more resources than your local computer"
 
 ---
 
-#Connect to Artemis
+# Connect to Artemis
 
 If you followed the [Setup]({{ page.root }}/setup) instructions, then you should already have the required software installed. If not, _please go do this now_!
 
