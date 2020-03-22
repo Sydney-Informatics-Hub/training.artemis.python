@@ -46,9 +46,14 @@ Some key words that might come up:
 * Parallelisation
 * MapReduce
 
+<br>
+
+# Course pre-requisites
+You should have some experience with Python. You should be able to connect to a remote computer (i.e. Artemis) via ssh and submit a job to a scheduler.
+
 
 # What does *parallel* mean?
-Seperate workers or processes exchanging information and data. There are a few categories you can put parallel workflows into.
+Seperate workers or processes exchanging information and data. You could classify different parallel workflows into different categories, which can make you think about how to write your code and what approaches to take.
 
 ### Embarrassingly parallel:
 Requires no communication between processors
@@ -57,16 +62,11 @@ Requires no communication between processors
 * rendering video frames in computer animation
 * proof-of-work systems used in cryptocurrency
 
-
-### Coarse-grained parallel:
-Requires occasional communication between processors
-
-### Fine-grained parallel:
-Requires frequent communication between processors
+### Coarse/Fine-grained parallel:
+Requires occasional or frequent communication between processors
 
 * finite difference time-stepping on parallel grid
 * domain decomposition modeling for finite element method
-
 
 Let's get started with some examples....
 
