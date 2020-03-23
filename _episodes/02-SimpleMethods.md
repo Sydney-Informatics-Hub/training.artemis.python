@@ -140,7 +140,7 @@ The standard defines the syntax and semantics of a core of library routines usef
 See the [mpi4py docs as a start](https://mpi4py.readthedocs.io/en/stable/index.html)
 
 **MPI for Python**
-mpi4py provides bindings of the MPI standard for the Python programming language, allowing any Python program to exploit multiple processors. A simple code demosntrating the collection of resources and how code is run on different processes:
+mpi4py provides bindings of the MPI standard for the Python programming language, allowing any Python program to exploit multiple processors. [This simple code](https://sydney-informatics-hub.github.io/training.artemis.python/files/mpi.py) demonstrates the collection of resources and how code is run on different processes:
 
 ~~~
 #Run with:
