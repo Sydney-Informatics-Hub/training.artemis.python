@@ -24,7 +24,7 @@ groc_comp = [expression(i) for i in old_list if filter(i)]
 
 # Vectorising code with numpy and pandas
 
-Your problem might be solved by using the fast way certain packages handle certain datatypes. Often called vectorizing. Take this nested for loop exampled
+Your problem might be solved by using the fast way certain packages handle certain datatypes. Often called vectorizing. Take this nested for loop example:
 
 ~~~
 #import packages
@@ -41,6 +41,7 @@ Users = pd.DataFrame(np.random.randint(0,100,size=(50, 1)), columns=list('A'))
 #Create an emtpy dataframe to fill with the resulting matches
 totalSlow=pd.DataFrame(columns=AllPubs.columns)
 totalFast=pd.DataFrame(columns=AllPubs.columns)
+
 ~~~
 .{python}
 
@@ -52,19 +53,27 @@ for index,pub in AllPubs.iterrows():
     if user['A']==pub['A']:
       totalSlow=totalSlow.append(pub,ignore_index=True)
       
+totalSlow=totalSlow.drop_duplicates()
 toc=time.time()
 print("Runtime:",toc-tic, "seconds")
+
 ~~~
 .{python}
 
 Or the vectorised method:
 ~~~
 tic=time.time()
-totalFast=pubs[pubs['A'].isin(Users.A.tolist())]
+totalFast=AllPubs[AllPubs['A'].isin(Users.A.tolist())]
+totalFast=totalSlow.drop_duplicates()
 toc=time.time()
 print("Runtime:",toc-tic, "seconds")
+
 ~~~
 .{python}
+
+
+Which one is faster? 
+
 
 # Multi-threading/processing 
 
