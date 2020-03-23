@@ -16,7 +16,9 @@ keypoints:
 This episode shows you a few of the basic tools that we can use in Python to make our code go faster.
 
 
-# Debugging and profiling your code
+# Profiling your code
+
+Before you get stuck into making things fast, it is important to find out what is exactly slow in your code. Is it a particular function running slow? Or are you calling a really fast function a million times? You can save yourself a lot development time by profiling your code to give you an idea for where efficiencies can be found. Let's profile a simple Python script and then think about how we could make it faster.
 
 Put this code in a script (or download from [here](https://sydney-informatics-hub.github.io/training.artemis.python/files/faster.py)):
 ~~~
@@ -47,7 +49,8 @@ if __name__=='__main__':
 ~~~
 {: .python}
 
-Run it with ```python -m cProfile faster.py```  and see the output
+There are several ways to debug and profile Python, a very elegant and built in one is [cProfile](https://docs.python.org/3/library/profile.html)
+It analyses your code as it executes. So, run it with ```python -m cProfile faster.py```  and see the output of the script and the profiling:
 
 ~~~
 Hello, try timing some parts of this code!
