@@ -68,13 +68,11 @@ We will interactively learn dask dataframe fundamentals, so running on the compu
 qsub -I -P Training -l select=1:ncpus=2:mem=6GB -l walltime=00:30:00
 source /project/Training/kmarTrain/miniconda3/bin/activate
 ~~~
-{: .bash}
 
 You should see an extra conda environment named dask which we will activate
 ~~~
 conda info --envs 
 ~~~
-{: .bash}
 
 ~~~
                          /home/kmar7637/miniconda3
@@ -96,12 +94,11 @@ import makedata
 data = makedata.data()
 data
 ~~~
-{:. bash}
+{: .python}
 
 The data is preloaded into a dask dataframe. Notice the output to data shows the dataframe metadata.  
 
 The concept of splitting the dask dataframe into pandas sub dataframes can be seen by the ***nopartitians=10*** output. This is the number of partitians the dataframe is split into and in this case was automatically calibrated, but can be specified. There is a trade off between splitting data too much that improves memory management, and the number of extra tasks it generates. For instance, if you have a 1000 GB of data and are using 10 MB chunks, then you have 100,000 partitions. Every operation on such a collection will generate at least 100,000 tasks. But more on this later. For now lets become familiar with some basic Dataframe operations.
-
 
 Let's inspect the data in its types, and also take the first 5 rows. 
 
@@ -110,7 +107,7 @@ By default, dataframe operations are ***lazy*** meaning no computation takes pla
 data.dtypes
 data.head(5)
 ~~~
-{: .bash}
+{: .python}
 
 You should see the below output
 ~~~
@@ -138,14 +135,14 @@ Apply a function to a column
 ~~~
 data.income.apply(lambda x: x * 1000).head(5)
 ~~~
-{: .bash}
+{: .python}
 
 Assign values to a new column
 
 ~~~
 data = data.assign(dummy = 1)
 ~~~
-{:. bash}
+{: .python}
 
 group by operation - calculate the average incomes by occupation. Notice the compute() trigger that performs the operations.
 
@@ -203,7 +200,6 @@ Please exit your ipython shell with  ```exit```, and then exit interactive sessi
 ~~~
 qsub complex_system.pbs
 ~~~
-{: .bash}
 
 When that script has completed, the output file ```testcomplex.o??????``` should contain something like this:
 
