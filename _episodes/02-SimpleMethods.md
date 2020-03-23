@@ -18,7 +18,7 @@ This episode shows you a few of the basic tools that we can use in Python to mak
 
 # Debugging and profiling your code
 
-Put this code in a script:
+Put this code in a script (or download from [here](./files/faster.py):
 ~~~
 #A test function to see how you can profile code for speedups
 
@@ -75,7 +75,7 @@ You can now pick apart your code and see where you should devote your time to im
 
 # Loops and Vectorising code with numpy and pandas
 
-Your problem might be solved by using the fast way certain packages handle certain datatypes. Often called vectorizing. Take this nested for loop example:
+Your problem might be solved by using the fast way certain packages handle certain datatypes. Often called vectorizing. Take this nested for loop [exampl](./files/vector.py):
 
 ~~~
 #import packages
