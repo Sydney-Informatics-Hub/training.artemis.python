@@ -15,14 +15,65 @@ keypoints:
 ---
 This episode shows you a few of the basic tools that we can use in Python to make our code go faster.
 
-# Loops and Iterators
-The simplest thing in python to make fast is perhaps a loop where each exuction of the loop is indepent of everything else, fo example.
 
-groc_list=[banana,apple,orange]
-for item in groceries1
-groc_comp = [expression(i) for i in old_list if filter(i)]
+# Debugging and profiling your code
 
-# Vectorising code with numpy and pandas
+Put this code in a script:
+~~~
+#A test function to see how you can profile code for speedups
+
+import time
+
+def waithere():
+	print("waiting for 1 second")
+	time.sleep(1)
+
+def add2(a=0,b=0):
+	print("adding ", a, "and", b)
+	return(a+b)
+
+def main():
+	print("Hello, try timing some parts of this code!")
+
+	waithere()
+	
+	add2(4,7)
+
+	add2(3,1)
+
+
+if __name__=='__main__':
+	main()
+~~~
+
+Run it with ```python -m cProfile faster.py```  and see the output
+
+~~~
+Hello, try timing some parts of this code!
+waiting for 1 second
+adding  4 and 7
+adding  3 and 1
+
+12 function calls in 1.008 seconds
+
+Ordered by: standard name
+
+ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+1    0.000    0.000    1.008    1.008 faster.py:12(main)
+1    0.000    0.000    1.008    1.008 faster.py:2(<module>)
+1    0.000    0.000    1.002    1.002 faster.py:4(waithere)
+2    0.000    0.000    0.005    0.003 faster.py:8(add2)
+1    0.000    0.000    1.008    1.008 {built-in method builtins.exec}
+4    0.007    0.002    0.007    0.002 {built-in method builtins.print}
+1    1.001    1.001    1.001    1.001 {built-in method time.sleep}
+1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+~~~
+{.output}
+
+You can now pick apart your code and see where you should devote your time to improving.
+
+
+# Loops and Vectorising code with numpy and pandas
 
 Your problem might be solved by using the fast way certain packages handle certain datatypes. Often called vectorizing. Take this nested for loop example:
 
@@ -77,59 +128,6 @@ print("Runtime:",toc-tic, "seconds")
 Which one is faster? 
 
 
-# Multi-threading/processing 
-
-Put this code in a script:
-~~~
-#A test function to see how you can profile code for speedups
-
-import time
-
-def waithere():
-	print("waiting for 1 second")
-	time.sleep(1)
-
-def add2(a=0,b=0):
-	print("adding ", a, "and", b)
-	return(a+b)
-
-def main():
-	print("Hello, try timing some parts of this code!")
-
-	waithere()
-	
-	add2(4,7)
-
-	add2(3,1)
-
-
-if __name__=='__main__':
-	main()
-~~~
-
-Run it with ```python -m cProfile faster.py```  and see the output
-
-~~~
-Hello, try timing some parts of this code!
-waiting for 1 second
-adding  4 and 7
-adding  3 and 1
-
-12 function calls in 1.008 seconds
-
-Ordered by: standard name
-
-ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-1    0.000    0.000    1.008    1.008 faster.py:12(main)
-1    0.000    0.000    1.008    1.008 faster.py:2(<module>)
-1    0.000    0.000    1.002    1.002 faster.py:4(waithere)
-2    0.000    0.000    0.005    0.003 faster.py:8(add2)
-1    0.000    0.000    1.008    1.008 {built-in method builtins.exec}
-4    0.007    0.002    0.007    0.002 {built-in method builtins.print}
-1    1.001    1.001    1.001    1.001 {built-in method time.sleep}
-1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
-~~~
-{.output}
 
 
 # MPI: Message Passing Interface
