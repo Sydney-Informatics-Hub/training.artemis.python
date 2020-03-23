@@ -41,7 +41,7 @@ def main():
 
 main()
 ~~~
-{: .bash}
+{: .python}
 
 Now, you run this in an interactive session.
 
