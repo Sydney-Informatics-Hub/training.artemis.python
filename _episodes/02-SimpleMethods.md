@@ -1,7 +1,7 @@
 ---
 title: "Simple methods"
 teaching: 15
-exercises: 0
+exercises: 5
 questions:
 - "Which method for acceleration should I choose?"
 objectives:
