@@ -3,17 +3,16 @@ title: "Simple methods"
 teaching: 15
 exercises: 0
 questions:
-- "Which method for accelration should I choose?"
+- "Which method for acceleration should I choose?"
 objectives:
-- "Learn about the speed differences in Loops, Iterators, and Generators"
+- "Learn simples methods to profile your code"
 - "See how numpy and pandas use Vectorising to improve perfomance for some data"
-- "Multithreading"
 - "Use MPI to communicate betwwen workers"
 keypoints:
 - "Understand there are different ways to accelerate"
 - "The best method depends on your algorithms, code and data"
 ---
-This episode shows you a few of the basic tools that we can use in Python to make our code go faster.
+This episode shows you a few of the basic tools that we can use in Python to make our code go faster. There is no perfect method for optimising code. Efficiency gains depend on what your end goal is, what libraries are availble, what method or approach you want to take when writing algorithms, what your data is like, what hardware you have. Hopefully these notes will allow you to think about your problems from different perspectives to give you the best opportunity to make your development and execution as efficient as possible.
 
 
 # Profiling your code
@@ -31,7 +30,7 @@ def waithere():
 	time.sleep(1)
 
 def add2(a=0,b=0):
-	print("adding ", a, "and", b)
+	print("adding", a, "and", b)
 	return(a+b)
 
 def main():
@@ -50,13 +49,13 @@ if __name__=='__main__':
 {: .python}
 
 There are several ways to debug and profile Python, a very elegant and built in one is [cProfile](https://docs.python.org/3/library/profile.html)
-It analyses your code as it executes. So, run it with ```python -m cProfile faster.py```  and see the output of the script and the profiling:
+It analyses your code as it executes. Run it with ```python -m cProfile faster.py```  and see the output of the script and the profiling:
 
 ~~~
 Hello, try timing some parts of this code!
 waiting for 1 second
-adding  4 and 7
-adding  3 and 1
+adding 4 and 7
+adding 3 and 1
 
 12 function calls in 1.008 seconds
 
@@ -74,10 +73,10 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 ~~~
 {: .output}
 
-You can now pick apart your code and see where you should devote your time to improving.
+You can now interrogate your code and see where you should devote your time to improving it.
 
 
-# Loops and Vectorising code with numpy and pandas
+# Loops and vectorising code with numpy and pandas
 
 Your problem might be solved by using the fast way certain packages handle certain datatypes. Often called vectorizing. Take this nested for loop [example](https://sydney-informatics-hub.github.io/training.artemis.python/files/vector.py):
 
@@ -88,8 +87,8 @@ import pandas as pd
 import time 
 
 #Create some data to work with
-AllPubs = pd.DataFrame(np.random.randint(0,100,size=(100, 4)), columns=list('ABCD'))
-Users = pd.DataFrame(np.random.randint(0,100,size=(50, 1)), columns=list('A'))
+AllPubs = pd.DataFrame(np.random.randint(0,100,size=(100, 4)), columns=['user','publication','id','other'])
+Users = pd.DataFrame(np.random.randint(0,100,size=(50, 1)), columns=['id'])
 
 #This could perhaps be the id of a person and the list of publications they have made. 
 #You want to match up their publications with some other list, 
@@ -107,7 +106,7 @@ Now compare the nested for-loop method:
 tic=time.time()
 for index,pub in AllPubs.iterrows():
   for index2,user in Users.iterrows():
-    if user['A']==pub['A']:
+    if user['id']==pub['id']:
       totalSlow=totalSlow.append(pub,ignore_index=True)
       
 totalSlow=totalSlow.drop_duplicates()
@@ -120,7 +119,7 @@ print("Runtime:",toc-tic, "seconds")
 Or the vectorised method:
 ~~~
 tic=time.time()
-totalFast=AllPubs[AllPubs['A'].isin(Users.A.tolist())]
+totalFast=AllPubs[AllPubs['id'].isin(Users.id.tolist())]
 totalFast=totalSlow.drop_duplicates()
 toc=time.time()
 print("Runtime:",toc-tic, "seconds")
