@@ -137,11 +137,25 @@ Which one is faster?
 MPI is a standardized and portable message-passing system designed to function on a wide variety of parallel computers.
 The standard defines the syntax and semantics of a core of library routines useful to a wide range of users writing portable message-passing programs in C, C++, and Fortran. There are several well-tested and efficient implementations of MPI, many of which are open-source or in the public domain.
 
-http://openmpi.org
-
-http://mpich.org
+See the [mpi4py docs as a start](https://mpi4py.readthedocs.io/en/stable/index.html)
 
 **MPI for Python**
-mpi4py provides bindings of the MPI standard for the Python programming language, allowing any Python program to exploit multiple processors.
+mpi4py provides bindings of the MPI standard for the Python programming language, allowing any Python program to exploit multiple processors. A simple code demosntrating the collection of resources and how code is run on different processes:
 
+~~~
+#Run with:
+#mpiexec -n 4 python mpi.py
+
+from mpi4py import MPI
+
+comm = MPI.COMM_WORLD
+size = comm.Get_size()
+rank = comm.Get_rank()
+
+print("I am rank %d in group of %d processes." % (rank, size))
+~~~
+{: .python}
+
+
+Let's now get stuck into some more specific use-cases and tools to use.
 
