@@ -18,7 +18,7 @@ This episode shows you a few of the basic tools that we can use in Python to mak
 
 # Debugging and profiling your code
 
-Put this code in a script (or download from [here](./files/faster.py):
+Put this code in a script (or download from [here](https://sydney-informatics-hub.github.io/training.artemis.python/files/faster.py)):
 ~~~
 #A test function to see how you can profile code for speedups
 
@@ -45,6 +45,7 @@ def main():
 if __name__=='__main__':
 	main()
 ~~~
+{: .python}
 
 Run it with ```python -m cProfile faster.py```  and see the output
 
@@ -68,14 +69,14 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 1    1.001    1.001    1.001    1.001 {built-in method time.sleep}
 1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
 ~~~
-{.output}
+{: .output}
 
 You can now pick apart your code and see where you should devote your time to improving.
 
 
 # Loops and Vectorising code with numpy and pandas
 
-Your problem might be solved by using the fast way certain packages handle certain datatypes. Often called vectorizing. Take this nested for loop [exampl](./files/vector.py):
+Your problem might be solved by using the fast way certain packages handle certain datatypes. Often called vectorizing. Take this nested for loop [example](https://sydney-informatics-hub.github.io/training.artemis.python/files/vector.py):
 
 ~~~
 #import packages
@@ -96,7 +97,7 @@ totalSlow=pd.DataFrame(columns=AllPubs.columns)
 totalFast=pd.DataFrame(columns=AllPubs.columns)
 
 ~~~
-.{python}
+{: .python}
 
 Now compare the nested for-loop method:
 ~~~
@@ -111,7 +112,7 @@ toc=time.time()
 print("Runtime:",toc-tic, "seconds")
 
 ~~~
-.{python}
+{: .python}
 
 Or the vectorised method:
 ~~~
@@ -122,7 +123,7 @@ toc=time.time()
 print("Runtime:",toc-tic, "seconds")
 
 ~~~
-.{python}
+{: .python}
 
 
 Which one is faster? 
