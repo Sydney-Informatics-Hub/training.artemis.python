@@ -155,6 +155,27 @@ print("I am rank %d in group of %d processes." % (rank, size))
 ~~~
 {: .python}
 
+Submitting this python script on PBS is acheived below. Notice here we are using 4 seperate nodes in the pbs script.
+This amount aligns with the 4 np flag (number of processes), so each process its seperate and executed on different nodes on Artemis.
+~~~
+#!/bin/bash
+
+#PBS -P Training
+#PBS -N testmpi
+#PBS -l select=4:ncpus=1:mem=1GB
+#PBS -l walltime=00:10:00
+#PBS -q defaultQ
+
+cd $PBS_O_WORKDIR
+
+module load python
+
+module load openmpi-gcc
+
+mpiexec -np 4 python mpi.py > mpi.out
+
+~~~
+{:. bash}
 
 Let's now get stuck into some more specific use-cases and tools to use.
 
