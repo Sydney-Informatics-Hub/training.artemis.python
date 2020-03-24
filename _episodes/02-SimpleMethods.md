@@ -7,7 +7,7 @@ questions:
 objectives:
 - "Learn simples methods to profile your code"
 - "See how numpy and pandas use Vectorising to improve perfomance for some data"
-- "Use MPI to communicate betwwen workers"
+- "Use MPI to communicate between workers"
 keypoints:
 - "Understand there are different ways to accelerate"
 - "The best method depends on your algorithms, code and data"
