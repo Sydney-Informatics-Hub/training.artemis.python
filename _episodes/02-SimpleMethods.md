@@ -120,7 +120,7 @@ Or the vectorised method:
 ~~~
 tic=time.time()
 totalFast=AllPubs[AllPubs['id'].isin(Users.id.tolist())]
-totalFast=totalSlow.drop_duplicates()
+totalFast=totalFast.drop_duplicates()
 toc=time.time()
 print("Runtime:",toc-tic, "seconds")
 
