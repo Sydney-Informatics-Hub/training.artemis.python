@@ -86,7 +86,7 @@ Generally speaking, pandas and numpy libraries should be libraries you frequentl
 3. Elegant Syntax promoting consise behaviour. 
 4. Data structures come with common built in functions that are designed to be used in a vectorised way.
 
-Lets explor this last point on vectorisation with an example. Take this nested for loop [example](https://sydney-informatics-hub.github.io/training.artemis.python/files/vector.py):
+Lets explore this last point on vectorisation with an example. Take this nested for loop [example](https://sydney-informatics-hub.github.io/training.artemis.python/files/vector.py):
 
 ~~~
 #import packages
