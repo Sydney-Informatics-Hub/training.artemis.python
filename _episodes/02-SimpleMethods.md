@@ -80,8 +80,8 @@ You can now interrogate your code and see where you should devote your time to i
 
 Your problem might be solved by using the fast way certain packages handle certain datatypes. 
 
-Generally speaking, Pandas and numpy should be your default. The offer advantages in high performance computing including:
-1. efficient datastructures that under the hood are implemented in fast C code rather than python.
+Generally speaking, pandas and numpy libraries should be libraries you frequently use. They offer advantages in high performance computing including:
+1. Efficient datastructures that under the hood are implemented in fast C code rather than python.
 2. Promoting explicit use of datatype declarations - making memory management of data and functions working on this data, faster.
 3. Elegant Syntax promoting consise behaviour. 
 4. Data structures come with common built in functions that are designed to be used in a vectorised way.
