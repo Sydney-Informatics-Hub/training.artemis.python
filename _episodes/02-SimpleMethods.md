@@ -78,7 +78,15 @@ You can now interrogate your code and see where you should devote your time to i
 
 # Loops and vectorising code with numpy and pandas
 
-Your problem might be solved by using the fast way certain packages handle certain datatypes. Often called vectorizing. Take this nested for loop [example](https://sydney-informatics-hub.github.io/training.artemis.python/files/vector.py):
+Your problem might be solved by using the fast way certain packages handle certain datatypes. 
+
+Generally speaking, Pandas and numpy should be your default. The offer advantages in high performance computing including:
+1. efficient datastructures that under the hood are implemented in fast C code rather than python.
+2. Promoting explicit use of datatype declarations - making memory management of data and functions working on this data, faster.
+3. Elegant Syntax promoting consise behaviour. 
+4. Data structures come with common built in functions that are designed to be used in a vectorised way.
+
+Lets explor this last point on vectorisation with an example. Take this nested for loop [example](https://sydney-informatics-hub.github.io/training.artemis.python/files/vector.py):
 
 ~~~
 #import packages
