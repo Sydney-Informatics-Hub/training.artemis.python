@@ -75,6 +75,8 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 
 You can now interrogate your code and see where you should devote your time to improving it.
 
+Special note on style: Developing python software in a ***modular*** manner assists with debugging and time profiling.
+
 
 # Loops and vectorising code with numpy and pandas
 
