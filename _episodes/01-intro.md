@@ -39,12 +39,10 @@ We will cover a few of the ways that you can potentially speed up Python. As we 
 Some key words that might come up:
 
 * Vectorisation
-* Multi threading/processing
 * MPI message parsing interface
-* GPU programming
 * CPU, core, node, thread, process, worker, job, task
 * Parallelisation
-* MapReduce
+* Python decorators and functional programming.
 
 
 <br>
