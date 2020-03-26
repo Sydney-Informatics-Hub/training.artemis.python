@@ -52,20 +52,26 @@ You should have some experience with Python. You should be able to connect to a 
 
 <br>
 # What does *parallel* mean?
-Seperate workers or processes exchanging information and data. You could classify different parallel workflows into different categories, which can make you think about how to write your code and what approaches to take.
+Seperate workers or processes acting in an independent or semi-dependent manner. Independent processes ship data, program files and libraries to an isloated ecosystem where computation is performed Communication between workers can be achieved. Contrastingly there are also shared memory set ups where multiple computational resources are pooled together to work on the same data. 
+
+Generally speaking parallel workflows fit different categories, which can make you think about how to write your code and what approaches to take.
 
 ### Embarrassingly parallel:
-Requires no communication between processors
+Requires no communication between processors. Utilise shared memory spaces.
 
 * running same algorithm for a range of input parameters
 * rendering video frames in computer animation
-* proof-of-work systems used in cryptocurrency
+* Open MP implementations.
 
 ### Coarse/Fine-grained parallel:
 Requires occasional or frequent communication between processors
 
-* finite difference time-stepping on parallel grid
-* domain decomposition modeling for finite element method
+* Course uses a small number of processes on large data. 
+* Fine grain uses a large number of small processes with very little communication. Improves computational bound problems.
+* MPI implementations.
+* Some examples are finite difference time-stepping on parallel grid, finite element methods.
+
+In this course there are ways to implement paralellism on a low level. However, open source software has ***evolved*** dramatically over the last few years allowing more ***high level implementations and concise 'pythonic' syntax*** that wraps around low level tools. The focus on this course is to use these modern high level implementations on Artemis.
 
 Let's get started with some examples....
 
