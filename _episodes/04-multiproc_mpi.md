@@ -108,6 +108,10 @@ exit
 
 ## Calculation of pi - submitting two scripts to compare multiprocessing advantage
 
+<figure>
+  <img src="{{ page.root }}/fig/calc_pi.png" style="margin:5px;width:400px"/>
+</figure><br>
+
 Navigate to the computepi_multiprocs.py file located in the files directory. Notice how the Pool object and map function sets off simulating an estimate of pi given a sequence of trails - the larger the trail number the closer the estimate is to pi. 
 
 Run two scripts by sumitting the run_pi.pbs file to the scheduler. This pbs script should submit two jobs that approximate pi in the same way, except one using the multiprocessing library and is slightly faster even though the same Artemis resources are requested.
@@ -132,6 +136,8 @@ There is generally a sweet spot in how many processes you create to optimise the
 [https://docs.python.org/3/library/multiprocessing.html](https://docs.python.org/3/library/multiprocessing.html)
 
 [https://www.backblaze.com/blog/whats-the-diff-programs-processes-and-threads/](https://www.backblaze.com/blog/whats-the-diff-programs-processes-and-threads/)
+
+[https://pawseysc.github.io/training.html](https://pawseysc.github.io/training.html)
 
 <br>
 
