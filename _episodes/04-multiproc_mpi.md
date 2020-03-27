@@ -26,7 +26,6 @@ A thread is the unit of execution within a process. A process can have anywhere 
 
 <figure>
   <img src="{{ page.root }}/fig/process_v_thread.png" style="margin:6px;width:300px"/>
-  <figcaption> Dask High Level Schema <a href="https://www.backblaze.com/blog/whats-the-diff-programs-processes-and-threads/</a></figcaption>
 </figure><br>
           
 Back to python, the multiprocessing library was designed to break down the **Global Interpreter Lock (GIL)** that limits one thread to control the Python interpreter. In Python, the things that are occurring simultaneously are called by different names (thread, task, process). While they all fall under the definition of concurrency (multiple things happening anaologous to different trains of thought) - only multiprocessing actually runs these trains of thought at literally the same time. We will only cover multiprocessing here which assists in CPU bound operations - but keep in mind other methods exist.
