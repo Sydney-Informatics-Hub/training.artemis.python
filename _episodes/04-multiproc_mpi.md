@@ -110,14 +110,12 @@ exit
 
 Navigate to the computepi_multiprocs.py file located in the files directory. Notice how the Pool object and map function sets off simulating an estimate of pi given a sequence of trails - the larger the trail number the closer the estimate is to pi. 
 
-Run this code by submitting the run_pi.pbs file to the scheduler. 
+Run two scripts by sumitting the run_pi.pbs file to the scheduler. This pbs script should submit two jobs that approximate pi in the same way, except one using the multiprocessing library and is slightly faster even though the same Artemis resources are requested.
 
 ~~~
 cd files
 qsub run_pi.pbs
 ~~~
-
-The pbs script should submit two jobs that approximate pi in the same way, except one using the multiprocessing library and is slightly faster even though the same Artemis resources are requested.
 
 While it is running, have a look at the code.
 
