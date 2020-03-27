@@ -101,6 +101,13 @@ rsync -av /project/Training/AdvPyTrain/files/* ./files
 rsync -av /project/Training/AdvPyTrain/data/* ./data
 ~~~
 
+Please exit the interactive session once files and data has been loaded into your directory
+~~~
+exit
+~~~
+
+## Calculation of pi - submitting two scripts to compare multiprocessing advantage
+
 Navigate to the computepi_multiprocs.py file located in the files directory. Notice how the Pool object and map function sets off simulating an estimate of pi given a sequence of trails - the larger the trail number the closer the estimate is to pi. 
 
 Run this code by submitting the run_pi.pbs file to the scheduler. 
