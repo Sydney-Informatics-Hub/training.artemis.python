@@ -25,7 +25,7 @@ A process is a collection of resources including program files and memory, that 
 A thread is the unit of execution within a process. A process can have anywhere from just one thread to many threads. Threads are considered lightweight because they use far less resources than processes. Threads also share the same memory space so are not independent.
 
 <figure>
-  <img src="{{ page.root }}/fig/process_v_thread.png" style="margin:10px;width:600px"/>
+  <img src="{{ page.root }}/fig/process_v_thread.png" style="margin:6px;width:300px"/>
   <figcaption> Dask High Level Schema <a href="https://www.backblaze.com/blog/whats-the-diff-programs-processes-and-threads/</a></figcaption>
 </figure><br>
           
