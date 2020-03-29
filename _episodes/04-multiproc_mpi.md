@@ -19,7 +19,7 @@ With multiprocessing, Python creates new processes. A process here can be though
 
 One way to think about it is that each ***process runs in its own Python interpreter***, and multiprocessing farms out parts of your program to run on each process.
 
-## Some terminology
+## Some terminology - Processes, threads and shared memory
 A process is a collection of resources including program files and memory, that operates as an independent entity. Since each process has a seperate memory space, it can operate independently from other processes. It cannot directly access shared data in other processes, but can do so by using extra time and resources.
 
 A thread is the unit of execution within a process. A process can have anywhere from just one thread to many threads. Threads are considered lightweight because they use far less resources than processes. Threads also share the same memory space so are not independent.
