@@ -1,5 +1,5 @@
 ---
-title: "Simple methods"
+title: "2. Simple methods"
 teaching: 10
 exercises: 15
 questions:
