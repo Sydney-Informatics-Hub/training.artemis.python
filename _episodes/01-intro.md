@@ -1,6 +1,6 @@
 ---
 title: "Accelerating Python"
-teaching: 15
+teaching: 10
 exercises: 0
 questions:
 - "Who are the Sydney Informatics Hub?"
