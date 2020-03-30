@@ -1,5 +1,5 @@
 ---
-title: "Traditional python approaches to multi cpu and nodes"
+title: "4. Traditional python approaches to multi cpu and nodes"
 teaching: 25
 exercises: 5
 questions:
