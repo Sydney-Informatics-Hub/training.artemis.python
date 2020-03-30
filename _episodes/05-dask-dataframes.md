@@ -38,7 +38,7 @@ Dask emphasizes the following virtues:
 Dask provides high level collections - these are ***Dask Dataframes, bags, and arrays***.
 On a low level, dask dynamic task schedulers to scale up or down processes, and presents parallel computations by implementing task graphs. It provides an alternative to scaling out tasks instead of threading (IO Bound) and multiprocessing (cpu bound).
 
-
+Special note regarding dask on ***Artemis***:  Dask has a library called dask_jobqueue that allows the pbs specification to be submitted from python script. ***dask_jobqueue has been known not to work on Artemis*** due to different interconnects used in head nodes and compute nodes. Please do not use this library and rely on the traditional way we submit jobs to artemis. 
 
 # Dask Dataframes
 
