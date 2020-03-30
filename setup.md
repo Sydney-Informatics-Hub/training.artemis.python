@@ -6,6 +6,7 @@ root: "."
 
 # 1. Get a Python client
 We generally use and recommend Miniconda Python distribution: [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html). But feel free to use whatever one works for you.
+You can do all the exercises on Artemis for the training session, but in the real worl it is best to do offline development so we recommend getting Python working.
 
 <br>
 
