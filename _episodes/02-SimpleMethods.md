@@ -1,7 +1,7 @@
 ---
 title: "Simple methods"
-teaching: 15
-exercises: 5
+teaching: 10
+exercises: 15
 questions:
 - "Which method for acceleration should I choose?"
 objectives:
@@ -35,11 +35,8 @@ def add2(a=0,b=0):
 
 def main():
 	print("Hello, try timing some parts of this code!")
-
-	waithere()
-	
+	waithere()	
 	add2(4,7)
-
 	add2(3,1)
 
 
@@ -138,7 +135,7 @@ print("Runtime:",toc-tic, "seconds")
 {: .python}
 
 
-Which one is faster? 
+Which one is faster? Note the use of some really basic timing functions, these can help you understand the speed of your code.
 
 
 
@@ -147,13 +144,11 @@ Which one is faster?
 MPI is a standardized and portable message-passing system designed to function on a wide variety of parallel computers.
 The standard defines the syntax and semantics of a core of library routines useful to a wide range of users writing portable message-passing programs in C, C++, and Fortran. There are several well-tested and efficient implementations of MPI, many of which are open-source or in the public domain.
 
-See the [mpi4py docs as a start](https://mpi4py.readthedocs.io/en/stable/index.html)
-
-MPI for Python, found in ***mpi4py***, provides bindings of the MPI standard for the Python programming language, allowing any Python program to exploit multiple processors. [This simple code](https://sydney-informatics-hub.github.io/training.artemis.python/files/mpi.py) demonstrates the collection of resources and how code is run on different processes:
+MPI for Python, found in [mpi4py](https://mpi4py.readthedocs.io/en/stable/index.html), provides bindings of the MPI standard for the Python programming language, allowing any Python program to exploit multiple processors. [This simple code](https://sydney-informatics-hub.github.io/training.artemis.python/files/mpi.py) demonstrates the collection of resources and how code is run on different processes:
 
 ~~~
 #Run with:
-#mpiexec -n 4 python mpi.py
+#mpiexec -np 4 python mpi.py
 
 from mpi4py import MPI
 
@@ -165,8 +160,7 @@ print("I am rank %d in group of %d processes." % (rank, size))
 ~~~
 {: .python}
 
-Submitting this python script on PBS is acheived below. Notice here we are using 4 seperate nodes in the pbs script.
-This amount aligns with the 4 np flag (number of processes), so each process its seperate and executed on different nodes on Artemis.
+If you want to submit this python script on Artemis, the PBS script is below. Notice here we are requesting 4 seperate nodes in the PBS script. This amount aligns with the ```-np 4``` flag (number of processes), so each process is seperate and executed on different nodes on Artemis.
 ~~~
 #!/bin/bash
 
@@ -177,13 +171,10 @@ This amount aligns with the 4 np flag (number of processes), so each process its
 #PBS -q defaultQ
 
 cd $PBS_O_WORKDIR
-
 module load python
-
 module load openmpi-gcc
 
 mpiexec -np 4 python mpi.py > mpi.out
-
 ~~~
 {:. bash}
 
