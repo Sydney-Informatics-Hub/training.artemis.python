@@ -4,14 +4,14 @@ teaching: 15
 exercises: 0
 questions:
 - "Who are the Sydney Informatics Hub?"
+- "How do you make your Python faster?"
 objectives:
 - "Understand the Accelerated Python ecosystem."
 keypoints:
-- "Recall how to connect to Artemis HPC"
-- "Recall the difference between _batch_ and _interactive_ jobs"
-- "Recall the special **Data Transfer Queue**"
+- "SIH is availble to researchers to help them research!"
+- "Many ways to make Python go faster."
 ---
-This episode introduces the [Sydney Informatics Hub](https://informatics.sydney.edu.au/), and returns us to Artemis HPC.
+This episode introduces the [Sydney Informatics Hub](https://informatics.sydney.edu.au/), and puts into context the desire to make our Python code/scripts run faster and efficiently.
 
 
 # The Sydney Informatics Hub
