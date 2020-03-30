@@ -29,7 +29,7 @@ The Sydney Informatics Hub (SIH) is a _[Core Research Facility](https://sydney.e
 * [Project consulting and assisstance](https://sydney.edu.au/research/facilities/sydney-informatics-hub/project-support.html) with Statistics, Data Science, Research Engineering, Bioinformatics, Modeling/Simulation/Visualisation.
 * [Research data management](https://sydney.edu.au/research/facilities/sydney-informatics-hub/digital-research-infrastructure.html) consulting and platform support.
 
-We also aim to cultivate a **data community** at USyd, organising monthly [Hacky Hours](https://sydney.edu.au/research/facilities/sydney-informatics-hub/workshops-and-training/hacky-hour.html), outside training events (eg NVIDIA, Pawsey Center), and data/coding-related events. Look out for everthing happening on our [calander](https://sydney.edu.au/research/facilities/sydney-informatics-hub/workshops-and-training.html) or contact us to get some digital collaboration going.
+We also aim to cultivate a **data community** at USyd, organising monthly [Hacky Hours](https://sydney.edu.au/research/facilities/sydney-informatics-hub/workshops-and-training/hacky-hour.html), outside training events (eg NVIDIA, Pawsey Center), and data/coding-related events. Look out for everthing happening on our [calander](https://www.sydney.edu.au/research/facilities/sydney-informatics-hub/workshops-and-training/training-calendar.html) or contact us (at sih.info@sydney.edu.au) to get some digital collaboration going.
 
 <br>
 # Acceleration, Paralleisation, Vectorising, Threading, make-Python-go-fast 
@@ -66,12 +66,12 @@ Requires no communication between processors. Utilise shared memory spaces.
 ### Coarse/Fine-grained parallel:
 Requires occasional or frequent communication between processors
 
-* Course uses a small number of processes on large data. 
-* Fine grain uses a large number of small processes with very little communication. Improves computational bound problems.
+* Uses a small number of processes on large data. 
+* Fine grain uses a large number of small processes with very little communication. Improves computationally bound problems.
 * MPI implementations.
 * Some examples are finite difference time-stepping on parallel grid, finite element methods.
 
-In this course there are ways to implement paralellism on a low level. However, open source software has ***evolved*** dramatically over the last few years allowing more ***high level implementations and concise 'pythonic' syntax*** that wraps around low level tools. The focus on this course is to use these modern high level implementations on Artemis.
+Traditional implemententations of paralellism  are done on a low level. However, open source software has ***evolved*** dramatically over the last few years allowing more ***high level implementations and concise 'pythonic' syntax*** that wraps around low level tools. The focus on this course is to use these modern high level implementations for use on Artemis.
 
 Let's get started with some examples....
 
