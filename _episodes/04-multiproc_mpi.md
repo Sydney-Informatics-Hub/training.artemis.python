@@ -91,7 +91,7 @@ Let's run a larger piece of code in the traditional PBS script manner that utili
 If your not still in an interactive session, create another one. This is option but will make transfers faster - if there are enough cpu resources on the training node.
 
 ~~~
-qsub -I -P Training -l select=1:ncpus=6:mem=6GB -l walltime=00:10:00
+qsub -I -P Training -l select=1:ncpus=2:mem=6GB -l walltime=00:10:00
 ~~~
 
 Lets create a working folder and copy data to it. This holds both data and files we'll use for the rest of this training session.
