@@ -17,6 +17,11 @@ To run all the commands today in your own Python installation, you can set up an
 conda create -n dd dask==2.11.0 distributed==2.11.0 netCDF4==1.5.3 numpy==1.18.1 pandas==1.0.1 scipy==1.4.1 xarray==0.15.0 mpi4py==3.0.3 -c conda-forge
 ~~~
 
+Or install driectly from the yaml environment file with:
+~~~
+conda env create -f environment_python.yml
+~~~
+
 <br>
 
 # 3. Get access to the HPC
