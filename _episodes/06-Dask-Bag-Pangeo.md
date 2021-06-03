@@ -38,77 +38,60 @@ What are the ***drawbacks*** ?
 
 ### To learn Bag - Lets get our hands dirty with some examples
 
-Lets get back to ipython, ensuring that the dask conda environment is still activate.
+Dask API:
+[Dask Bag API](https://docs.dask.org/en/latest/bag-api.html)
 
-~~~
-qsub -I -P Training -l select=1:ncpus=2:mem=4GB -l walltime=00:20:00
-source /project/Training/kmarTrain/miniconda3/bin/activate
-conda activate dask
-cd /project/Training/myname
-ipython
-~~~
-
-We will investigate data located on the web that logs all juypter notebook instances run on the net. Two files are 
-1. Log files of every entry specific to a certain day
-2. An index of daily log files
+Using the data in our /files directory, lets create a dask bag from the contents of the json files. The contents are organised in a semi-structured way, hence converting this directly into a dataframe requires some extra steps. 
 
 Before we start, some python packages are needed. Types these commands directly into ipython
 ~~~
 import dask.bag as db
 import json
-import os
-import re
-import time
+dask_bag = db.read_text('./data/*.json').map(json.loads)
+
 ~~~
 {: .bash}
 
-Investigate underlying data by reading text file that houses daily data into a bag. First few rows are displayed
+Most common functions are : 
+map - Apply a function elementwise across one or more bags.
+filter - Filter elements in collection by a predicate function.
+take - Take the first k elements.(the Head equivalent of a dask dataframe
+
+For instance:
 ~~~
-db.read_text('https://archive.analytics.mybinder.org/events-2018-11-03.jsonl').take(3)
+dask_bag.take(1)
 ~~~
 {: .bash}
-
-The output should give you a task for the underlying data in the daily log files. Essential this is a text file in json format.
 ~~~
-('{"timestamp": "2018-11-03T00:00:00+00:00", "schema": "binderhub.jupyter.org/launch", "version": 1, "provider": "GitHub", "spe                c": "Qiskit/qiskit-tutorial/master", "status": "success"}\n',
- '{"timestamp": "2018-11-03T00:00:00+00:00", "schema": "binderhub.jupyter.org/launch", "version": 1, "provider": "GitHub", "spe                c": "ipython/ipython-in-depth/master", "status": "success"}\n',
- '{"timestamp": "2018-11-03T00:00:00+00:00", "schema": "binderhub.jupyter.org/launch", "version": 1, "provider": "GitHub", "spe                c": "QISKit/qiskit-tutorial/master", "status": "success"}\n')
+{'age': 50,
+  'name': ['Ulysses', 'Rice'],
+  'occupation': 'Technical Director',
+  'telephone': '+1-(147)-837-3639',
+  'address': {'address': '1103 Wright Street', 'city': 'West Linn'},
+  'credit-card': {'number': '3787 382163 49562', 'expiration-date': '12/21'}},)
 
 ~~~
 {: .output}
 
+### Dask Bag Exercise 1 : 
 
-Index file loaded as a bag. No data transfer or computation kicked off - just organising mapping the file to a json structure
-~~~
-index = db.read_text('https://archive.analytics.mybinder.org/index.jsonl').map(json.loads)
-index
-index.take(2)
-~~~
-{: .bash}
+Of the people who are less than 40yrs old, find the top 5 most common cities they reside in. Use functions:
 
-These files aren't big at all - a sign is the number of partitians of 1. Dask would automatically split the data up for large data. 
-~~~
-In [5]: index = db.read_text('https://archive.analytics.mybinder.org/index.jsonl').map(json.loads)
-In [6]: index
-Out[6]: dask.bag<loads, npartitions=1>
-In [7]: index.take(2)
-Out[7]:
-({'name': 'events-2018-11-03.jsonl', 'date': '2018-11-03', 'count': '7057'},
- {'name': 'events-2018-11-04.jsonl', 'date': '2018-11-04', 'count': '7489'})
-~~~
-{: .output}
+filter  - filter records 
+lambda expressions
+map - map a function
+frequencies - count number of occurences of each distinct category
+topk - K largest elements in a collection
 
-We can perform some operations on these two files. Please note the Dask Bag API (in the provided links section) for the signatures of available functions and their requirements.
 
-Read the index file as a dask bag and perform a mapping of the data to the function json.loads(). This function loads strings into a json object - given it adheres to the json structure.
+### Dask Bag Exercise 2 : 
 
-~~~
-index = db.read_text('https://archive.analytics.mybinder.org/index.jsonl').map(json.loads)
-print(index)
-~~~
-{: .bash}
+Using the dask_bag data, extract age, occupation and city for each person and place inside a nice dask dataframe.
+Hint, create a function that extracts relevant fields and returns a dict.
 
-### PANGEO GEOSCIENCE EXAMPLE
+
+
+### OPTIONAL PANGEO GEOSCIENCE EXAMPLE - MULTI DIMENSIONAL DATA
 Pangeo is a community promoting open, reproducible, and scalable science.
 
 In practice it is not realy a python package, but a collection of packages, supported datasets, tutorials and documentation used to promote scalable science. Its motivation was driven by data becoming increasingly large, the fragmentation of software making reproducability difficult, and a growing technology gap between industry and traditional science.
@@ -119,24 +102,15 @@ The example we will submit is an altered version of Pangeos meteorology use case
 https://pangeo.io/use_cases/meteorology/newmann_ensemble_meteorology.html
 
 
-### What is Xarray
-
 Rather than using a dask dataframe, data is loaded from multiple netcdf files in the data folder relative to where the script resides. 
 Xarray is an opensource python package that uses dask in its inner workings. Its design to make working with multi-dimensional data easier by introducing labels in the form of dimensions, coordinates and attributes on top of raw NumPy-like arrays, which allows for a more intuitive, more concise, and less error-prone developer experience.
 
 It is particulary suited for working with netcdf files and is tightly integrated with dask parallel computing. 
 
-Let's investigate a small portion of the data before looking at the complete script. Open an ipython terminal inside the data folder
-
-~~~
-cd /project/Training/myname/data
-ipython
-~~~
-
 And have a look at the data
 ~~~
 import xarray as xr
-data = xr.open_dataset('conus_daily_eighth_2008_ens_mean.nc4')
+data = xr.open_dataset('../data/conus_daily_eighth_2008_ens_mean.nc4')
 data
 ~~~
 {: .python}
@@ -144,7 +118,6 @@ data
 You should see the following metadata that holds 3 dimenstional information (latitude, longditude and time) on temperature and precipitation measurements.
 ~~~
 
-In [41]: data = xr.open_dataset('conus_daily_eighth_2008_ens_mean.nc4')
 
 In [42]: data
 Out[42]:
@@ -179,35 +152,9 @@ data.elevation.mean()
 ~~~
 {: .python}
 
-~~~
-In [50]: data.elevation.mean()
-Out[50]:
-<xarray.DataArray 'elevation' ()>
-array(709.99515723)
-~~~
-{: .output}
+On the HPC, run the PBS script that creates an image of latitude and longitudinal data.
 
-
-What is the average elevation for each longitude
-~~~
-data.elevation.mean(dim='lat')
-~~~
-{: .python}
-
-Exit from your ipython session. Now we will now run a script to the scheduler that loads multiple files, performs calculations on the xarray data and plots the results.
-
-Steps to do:
-1. In the files directory, open the python script we will run called pangeo.py.
-~~~
-cd /project/Training/myname/files
-nano pangeo.py
-~~~
-
-2. Alter the instance of the Client() object by redirecting the path in the local_directory argument to your /project/Training/myname folder. The Client object sets up a local cluster that uses all availble resources. In this case it is created on one compute node. The optional local_directory specifies a storage area that allows dask to copy temporary data on if RAM is insufficient to work on large datasets - i.e. its a path where dask can spill over some data to still perform data calculations. 
-
-3. Notice the xarray open_mfdaset function loads multiple files that match a naming pattern. Chunking size is specific to the axis ***time***, one chunck for each year. 
-
-4. Submit the ```pangeo.pbs``` file to the scheduler.
+Submit the ```pangeo.pbs``` file to the scheduler located in the /
 ~~~
 qsub pangeo.pbs
 ~~~
