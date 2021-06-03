@@ -53,15 +53,21 @@ dask_bag = db.read_text('./data/*.json').map(json.loads)
 {: .bash}
 
 Most common functions are : 
-map - Apply a function elementwise across one or more bags.
-filter - Filter elements in collection by a predicate function.
-take - Take the first k elements.(the Head equivalent of a dask dataframe
+
+ - map: Apply a function elementwise across one or more bags.
+
+ - filter: Filter elements in collection by a predicate function.
+
+ - take : Take the first k elements.(the Head equivalent of a dask dataframe
+
+~~~
 
 For instance:
 ~~~
 dask_bag.take(1)
 ~~~
 {: .bash}
+
 ~~~
 {'age': 50,
   'name': ['Ulysses', 'Rice'],
@@ -77,12 +83,13 @@ dask_bag.take(1)
 
 Of the people who are less than 40yrs old, find the top 5 most common cities they reside in. Use functions:
 
+~~~
 filter  - filter records 
 lambda expressions
 map - map a function
 frequencies - count number of occurences of each distinct category
 topk - K largest elements in a collection
-
+~~~
 
 ### Dask Bag Exercise 2 : 
 
