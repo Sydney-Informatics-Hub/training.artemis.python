@@ -60,7 +60,6 @@ Most common functions are :
 
  - take : Take the first k elements.(the Head equivalent of a dask dataframe
 
-~~~
 
 For instance:
 ~~~
@@ -83,13 +82,13 @@ dask_bag.take(1)
 
 Of the people who are less than 40yrs old, find the top 5 most common cities they reside in. Use functions:
 
-~~~
-filter  - filter records 
-lambda expressions
-map - map a function
-frequencies - count number of occurences of each distinct category
-topk - K largest elements in a collection
-~~~
+
+ - filter : filter records 
+ - lambda expressions
+ - map : map a function
+ - frequencies : count number of occurences of each distinct category
+ - topk : K largest elements in a collection
+
 
 ### Dask Bag Exercise 2 : 
 
