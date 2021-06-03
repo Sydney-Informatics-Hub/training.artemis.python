@@ -86,15 +86,17 @@ The output should be:
 
 ## Getting Data and Files for this Course:
 
-Let's run a larger piece of code in the traditional PBS script manner that utilises the multiprocessing library. You will need some files for this and other training demonstrations covered today. 
+From here on we will either run python files locally using our conda environment that was installed in the setup, or run pbs scripts on the HPC. In both cases, the data needed is stored on the HPC in the /project/Training/AdvPyTraining folder. 
 
-If your not still in an interactive session, create another one. This is option but will make transfers faster - if there are enough cpu resources on the training node.
+
+Setp 1 - get data from the HPC to our local directory using the credentials you were given for todays training. 
 
 ~~~
-qsub -I -P Training -l select=1:ncpus=2:mem=6GB -l walltime=00:10:00
+scp - r ict_hpctrain<N>@hpc.sydney.edu.au:/project/Training/AdvPyTrain/ .
+conda activate advpy
 ~~~
 
-Lets create a working folder and copy data to it. This holds both data and files we'll use for the rest of this training session.
+Step 2 - On the hpc create a new folder within the /project/Training directory, in which you will copy data to and in the near future run pbs scripts from.
 
 ~~~
 mkdir /project/Training/myname 
@@ -103,10 +105,7 @@ rsync -av /project/Training/AdvPyTrain/files/* ./files
 rsync -av /project/Training/AdvPyTrain/data/* ./data
 ~~~
 
-Please exit the interactive session once files and data has been loaded into your directory
-~~~
-exit
-~~~
+
 
 ## Calculation of pi - submitting two scripts to compare multiprocessing advantage
 
