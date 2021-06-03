@@ -61,32 +61,34 @@ If you need a proper database.
 You need functions not implemented by dask dataframes - see Dask Delayed.
 
 # Lets begin
-Lets activate a conda environment with all the python packages pre installed for ease of use with these tutorials.
-We will interactively learn dask dataframe fundamentals, so running on the compute nodes interactively is advisable for this section.
+If you haven't done so please activate the conda environment. We will use jupyter notebooks to run python scripts within the /files directory. A major advantage in doing this locally is jupyter notebooks interactive interface, and dask real time diagnostics that provide valuable profiling information. 
 
+LOCAL STEPS:
 ~~~
-qsub -I -P Training -l select=1:ncpus=2:mem=6GB -l walltime=00:30:00
-source /project/Training/kmarTrain/miniconda3/bin/activate
-~~~
-
-You should see an extra conda environment named dask which we will activate
-~~~
-conda info --envs 
+conda activate advpy
+jupyter notebook
 ~~~
 
+You should see a jupyter notebook session pop up in your browser.  
+
+Locate the /files directory, create a new python 3 file. In this file we will run python scripts to learn dask in an interactive manner.
+
+
+The below code sets up real time diagnostics provided by dask. Note the shutdown command to perform before quitting this python jupyter notebook session.
+
 ~~~
-                         /home/kmar7637/miniconda3
-base                  *  /project/Training/kmarTrain/miniconda3
-dask                     /project/Training/kmarTrain/miniconda3/envs/dask
+from dask.distributed import Client
+client = Client()
+client
+#client.shutdown() to shutdown after done
+
 ~~~
 {: .output}
 
-Activate the dask conda environment. Notice the environment on the left of the terminal change to (dask). We will interactively play with dask dataframes in ipython to get a feel for dataframe manipulations and outputs it causes.
-~~~
-conda activate dask
-cd /project/Training/myname/files
-ipython
-~~~
+Diagnostic information on how your efficiently your computational resources are running the code is given when you click the client url. We will cover the basics, but for more info on diagnostics refer to : 
+
+[Dask Distributed Diagnostics](https://docs.dask.org/en/latest/diagnostics-distributed.html)
+
 
 We will generate some data using one of the python files makedata.py by importing it in ipython. 
 ~~~
@@ -191,11 +193,39 @@ data[data.city == 'Madison Heights'].compute().to_csv('Madison.csv')
 
 But what if you need to run your own function, or a function outside of the pandas subset that dask dataframes make available? Dask delayed is your friend. It uses ***python decorator syntax*** to convert a function into a lazy executable. The functions can then be applied to build data pipeline operations in a similar manner to what we have just encountered.
 
-Let's explore a larger example of using dask dataframes and dask delayed functions.
+A major advantage in turning your functions into delayed (i.e. lazy) functions is that it allows multiple workers to work on contingent functions in an efficient manner. Type in the code below into the python file. The function 'add' is contingent on the 'inc' and 'double' functions. We will make these functions lazy and allow dask to manage resources effiently.  
+
+~~~
+
+def inc(x):
+    return x + 1
+
+def double(x):
+    return x * 2
+
+def add(x, y):
+    return x + y
+
+data = [1, 2, 3, 4, 5]
+
+output = []
+for x in data:
+    a = inc(x)
+    b = double(x)
+    c = add(a, b)
+    output.append(c)
+
+total = sum(output)
+
+
+~~~
+
+
+[Dask Delayed Functions Background](https://docs.dask.org/en/latest/delayed.html)
+
+On the HPC we can explore a larger example of using dask dataframes and dask delayed functions.
 
 In the ```/files``` directory, use your preferred editor to view the ```complex_system.py``` file. This script uses dask delayed functions that are applied to a sequence of data using pythonic ***list comprehension syntax*** . The code simulates financial defaults in a very theoretical way, and outputs the summation of these predicted defaults. 
-
-Please exit your ipython shell with  ```exit```, and then exit interactive session if you are still in it (a quick check can be made by looking at the shell location  ```ict_hpctrain1@hpc213``` you are on a compute node or ```ict_hpctrain1@login3``` is you are on a login node). Use the command ```exit``` here also to end the interactive session. Now submit this PBS script in the traditional way to the scheduler. i.e
 
 ~~~
 qsub complex_system.pbs
