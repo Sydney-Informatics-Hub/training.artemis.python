@@ -59,20 +59,8 @@ main()
 ~~~
 {: .python}
 
-Now, you run this in an interactive session.
+Now, you run this either with jupyter notebook or your preferred code editor. Keep in mind Python 3 module is used (if you are trying on the HPC)
 
-~~~
-qsub -I -P Training -l select=1:ncpus=2:mem=6GB -l walltime=00:10:00
-~~~
-
-Keep in mind the automatic behaviour for Artemis, once an interactive session has started, is to put you in your home directory. 
-
-Now load in a Python 3 module we can use. Note, this is pre-installed on Artemis, you can use your own specific versions as required.
-~~~
-module load python/3.7.2
-~~~
-
-And run it with:
 ~~~
 python basic.py
 ~~~
