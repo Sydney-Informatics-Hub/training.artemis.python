@@ -77,11 +77,10 @@ The output should be:
 From here on we will either run python files locally using our conda environment that was installed in the setup, or run pbs scripts on the HPC. In both cases, the data needed is stored on the HPC in the /project/Training/AdvPyTraining folder. 
 
 
-Setp 1 - get data from the HPC to our local directory using the credentials you were given for todays training. 
+Setp 1 - get data from the HPC to our local directory using the credentials you were given for todays training. Aim to be in the same folder we had run previous code locally.
 
 ~~~
-scp - r ict_hpctrain<N>@hpc.sydney.edu.au:/project/Training/AdvPyTrain/ .
-conda activate advpy
+scp -r ict_hpctrain<N>@hpc.sydney.edu.au:/project/Training/AdvPyTrain/ .
 ~~~
 
 Step 2 - On the hpc create a new folder within the /project/Training directory, in which you will copy data to and in the near future run pbs scripts from.
