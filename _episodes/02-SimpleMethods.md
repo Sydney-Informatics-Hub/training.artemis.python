@@ -138,45 +138,21 @@ print("Runtime:",toc-tic, "seconds")
 Which one is faster? Note the use of some really basic timing functions, these can help you understand the speed of your code.
 
 
+# A note on environments suited for python
 
-
-# MPI: Message Passing Interface
-MPI is a standardized and portable message-passing system designed to function on a wide variety of parallel computers.
-The standard defines the syntax and semantics of a core of library routines useful to a wide range of users writing portable message-passing programs in C, C++, and Fortran. There are several well-tested and efficient implementations of MPI, many of which are open-source or in the public domain.
-
-MPI for Python, found in [mpi4py](https://mpi4py.readthedocs.io/en/stable/index.html), provides bindings of the MPI standard for the Python programming language, allowing any Python program to exploit multiple processors. [This simple code](https://sydney-informatics-hub.github.io/training.artemis.python/files/mpi.py) demonstrates the collection of resources and how code is run on different processes:
+Using conda environments help with porting code developed locally to high performance computing. It ensures you are running code using the same packages and versions in different places. The Setup page describes how to create an environment using packages specified in a yml file. Some other basic commands are:
 
 ~~~
-#Run with:
-#mpiexec -np 4 python mpi.py
-
-from mpi4py import MPI
-
-comm = MPI.COMM_WORLD
-size = comm.Get_size()
-rank = comm.Get_rank()
-
-print("I am rank %d in group of %d processes." % (rank, size))
+conda activate <environment_name>
+conda deactivate
+conda env list 
+conda env remove --name <environment_name>
 ~~~
 {: .python}
 
-If you want to submit this python script on Artemis, the PBS script is below. Notice here we are requesting 4 seperate nodes in the PBS script. This amount aligns with the ```-np 4``` flag (number of processes), so each process is seperate and executed on different nodes on Artemis.
-~~~
-#!/bin/bash
+Moreover, there is an increasing trend, particularly when investigating data and exploring things interactively, to use jupyter notebook (this has been installed in the conda environment you are using). We'll go through the basics of the two, and for the remander of the training where code has been run locally, we will illustrate using jupyter notebook.
 
-#PBS -P Training
-#PBS -N testmpi
-#PBS -l select=4:ncpus=1:mem=1GB
-#PBS -l walltime=00:10:00
-#PBS -q defaultQ
 
-cd $PBS_O_WORKDIR
-module load python
-module load openmpi-gcc
-
-mpiexec -np 4 python mpi.py > mpi.out
-~~~
-{:. bash}
 
 Let's now get stuck into some more specific use-cases and tools to use.
 
