@@ -100,7 +100,7 @@ data
 
 The data is preloaded into a dask dataframe. Notice the output to data shows the dataframe metadata.  
 
-The concept of splitting the dask dataframe into pandas sub dataframes can be seen by the ***nopartitians=10*** output. This is the number of partitians the dataframe is split into and in this case was automatically calibrated, but can be specified. There is a trade off between splitting data too much that improves memory management, and the number of extra tasks it generates. For instance, if you have a 1000 GB of data and are using 10 MB chunks, then you have 100,000 partitions. Every operation on such a collection will generate at least 100,000 tasks. But more on this later. For now lets become familiar with some basic Dataframe operations.
+The concept of splitting the dask dataframe into pandas sub dataframes can be seen by the ***nopartitians=10*** output. This is the number of partitians the dataframe is split into and in this case was automatically calibrated, and can be specified when loading data (npartitians argument). There is a trade off between splitting data too much that improves memory management, and the number of extra tasks it generates. 
 
 Let's inspect the data in its types, and also take the first 5 rows. 
 
