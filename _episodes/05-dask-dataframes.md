@@ -46,7 +46,7 @@ A Dask DataFrame is a large parallel DataFrame composed of many smaller Pandas D
 
 <figure>
   <img src="{{ page.root }}/fig/dask_pic2.png" style="margin:6px;width:400px"/>
-  <figcaption> Dask High Level Schema <a href="https://docs.dask.org/en/latest/dataframe.html/">https://docs.dask.org/en/latest/dataframe.html/</a></figcaption>
+  <figcaption> Dask High Level Schema <a href="https://docs.dask.org/en/latest/">https://docs.dask.org/en/latest/</a></figcaption>
 </figure><br>
 
 Common Use Cases:
